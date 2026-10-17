@@ -1,0 +1,1341 @@
+<title>מסלול אנגלית</title>
+<style>
+/* Layout: sticky scrolling tab bar over one centered column; home is a dashboard, games use full-width colour answer tiles */
+:root{
+  --bg:#f3f6fa; --surface:#ffffff; --ink:#14213d; --muted:#5a6781; --line:#dbe3ee;
+  --accent:#0b7a75; --accent-ink:#ffffff; --soft:#e3f1f0; --good:#1f8a4c; --bad:#c2412d; --warn:#b7791f;
+  --xp:#e8a100; --xp-ink:#2b2000;
+  --o1:#c2412d; --o2:#1c5fb8; --o3:#9a6a00; --o4:#1f7a45;
+  --f-head:'Secular One','Heebo',system-ui,sans-serif; --f-body:'Heebo',system-ui,'Segoe UI',sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0d1424; --surface:#162038; --ink:#e8eef8; --muted:#9aa8c2; --line:#2a3856;
+  --accent:#43c0b8; --accent-ink:#08201f; --soft:#14343a; --good:#4cc27f; --bad:#ff8a76; --warn:#e7b25a;
+  --xp:#ffc233; --xp-ink:#2b2000; --o1:#b8382a; --o2:#2a6fd1; --o3:#a87400; --o4:#23895a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0d1424; --surface:#162038; --ink:#e8eef8; --muted:#9aa8c2; --line:#2a3856;
+  --accent:#43c0b8; --accent-ink:#08201f; --soft:#14343a; --good:#4cc27f; --bad:#ff8a76; --warn:#e7b25a;
+  --xp:#ffc233; --xp-ink:#2b2000; --o1:#b8382a; --o2:#2a6fd1; --o3:#a87400; --o4:#23895a; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6}
+#wrap{max-width:920px;margin:0 auto;padding-inline:16px;padding-block:20px 56px}
+h1,h2,h3{font-family:var(--f-head);font-weight:400;line-height:1.25;margin:0;text-wrap:balance}
+h1{font-size:30px} h2{font-size:23px} h3{font-size:18px}
+p{margin:0}
+.muted{color:var(--muted)} .small{font-size:14px}
+.en{direction:ltr;text-align:left;unicode-bidi:isolate}
+.he{direction:rtl;text-align:right}
+button{font:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.btn{background:var(--accent);color:var(--accent-ink);border:0;border-radius:10px;padding:11px 20px;font-weight:700;min-height:44px}
+.btn:active{transform:translateY(1px)}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line);font-weight:500}
+.btn.xp{background:var(--xp);color:var(--xp-ink)}
+.btn:disabled{opacity:.5;cursor:default}
+header.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.pill{display:inline-flex;gap:6px;align-items:center;border-radius:999px;padding:4px 12px;font-weight:700;font-size:15px;font-variant-numeric:tabular-nums;background:var(--surface);border:1px solid var(--line)}
+.pill.xp{background:var(--xp);color:var(--xp-ink);border-color:var(--xp)}
+.pill svg{width:16px;height:16px;flex:none}
+.tabs{display:flex;gap:2px;border-bottom:1px solid var(--line);margin-bottom:22px;overflow-x:auto;position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);z-index:3;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{background:none;border:0;border-bottom:3px solid transparent;padding:12px 14px;color:var(--muted);white-space:nowrap;min-height:46px}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent);font-weight:700}
+.banner{background:var(--soft);border-radius:10px;padding:10px 14px;margin-bottom:16px;font-size:14px}
+.stack{display:grid;gap:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;min-width:0}
+.card.link{display:flex;flex-direction:column;gap:6px;text-align:right;color:var(--ink);cursor:pointer}
+.card.link:hover{border-color:var(--accent)}
+.tag{font-size:13px;color:var(--muted)}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.spread{justify-content:space-between}
+.stat b{display:block;font-family:var(--f-head);font-weight:400;font-size:30px;line-height:1.1;font-variant-numeric:tabular-nums}
+.bar{height:10px;background:var(--line);border-radius:6px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);border-radius:6px}
+.bar.xp i{background:var(--xp)}
+.hero{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center}
+.ring{--p:0;width:96px;height:96px;border-radius:50%;background:conic-gradient(var(--xp) calc(var(--p)*1%),var(--line) 0);display:grid;place-items:center}
+.ring span{width:74px;height:74px;border-radius:50%;background:var(--surface);display:grid;place-items:center;font-family:var(--f-head);font-size:22px;font-variant-numeric:tabular-nums}
+label.f{display:grid;gap:4px;font-size:14px;color:var(--muted)}
+input[type=text],select,textarea{font:inherit;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:10px 12px;width:100%;min-height:44px}
+textarea{min-height:240px;direction:ltr;text-align:left}
+.form{display:grid;gap:14px;max-width:440px}
+/* חיפוש עם השלמה */
+.combo{position:relative}
+.combo input{font-size:18px;padding:14px 16px}
+.list{position:absolute;inset-inline:0;top:calc(100% + 4px);background:var(--surface);border:1px solid var(--line);border-radius:12px;max-height:320px;overflow:auto;z-index:5;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+.list[hidden]{display:none}
+.opt-i{display:flex;justify-content:space-between;gap:10px;align-items:baseline;padding:10px 14px;cursor:pointer;border-bottom:1px solid var(--line)}
+.opt-i:last-child{border-bottom:0}
+.opt-i[aria-selected="true"],.opt-i:hover{background:var(--soft)}
+.opt-i b{font-weight:500}
+.opt-i mark{background:var(--xp);color:var(--xp-ink);border-radius:3px;padding:0 1px}
+.cats{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 6px}
+.chip{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:6px 14px;font-size:15px;min-height:36px}
+.chip[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+/* שיעור */
+.rule{border-inline-start:3px solid var(--accent);padding:2px 14px;margin:10px 0}
+.ex{display:grid;gap:2px;padding:8px 12px;background:var(--soft);border-radius:8px;margin:6px 0}
+.bad{color:var(--bad)} .ok{color:var(--good)}
+.passage{border-inline-start:3px solid var(--accent);padding:4px 16px;margin:12px 0 20px;background:var(--soft);border-radius:6px}
+/* שאלות */
+.opts{display:grid;gap:8px;margin:14px 0}
+.opt{background:var(--surface);border:1px solid var(--line);color:var(--ink);border-radius:10px;padding:12px 14px;min-height:48px}
+.opt:hover:not(:disabled){border-color:var(--accent)}
+.opt.right{border-color:var(--good);background:color-mix(in srgb,var(--good) 16%,var(--surface))}
+.opt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 16%,var(--surface))}
+.fb{padding:10px 14px;border-radius:10px;background:var(--soft);margin-bottom:14px}
+/* משחקים */
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+.tile{border:0;border-radius:12px;color:#fff;font-weight:700;font-size:18px;min-height:76px;padding:12px;display:flex;align-items:center;justify-content:center;text-align:center}
+.tile:nth-child(1){background:var(--o1)} .tile:nth-child(2){background:var(--o2)} .tile:nth-child(3){background:var(--o3)} .tile:nth-child(4){background:var(--o4)}
+.tile:disabled{opacity:.55}
+.tile.right{opacity:1;outline:4px solid var(--good)}
+.tile.wrong{opacity:.4}
+@media(max-width:480px){.tiles{grid-template-columns:1fr}}
+.bigq{font-family:var(--f-head);font-size:28px;text-align:center;margin:18px 0}
+.hud{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;font-variant-numeric:tabular-nums}
+.flash{perspective:900px;min-height:220px}
+.flash button{width:100%;min-height:220px;border:1px solid var(--line);border-radius:18px;background:var(--surface);color:var(--ink);font-family:var(--f-head);font-size:34px;display:grid;place-items:center;padding:20px;gap:6px}
+.mgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(min-width:700px){.mgrid{grid-template-columns:repeat(4,1fr)}}
+.mt{min-height:68px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-weight:700;padding:8px;font-size:16px}
+.mt.sel{border-color:var(--accent);background:var(--soft)}
+.mt.done{visibility:hidden}
+.mt.no{border-color:var(--bad)}
+.chest{min-height:110px;border:0;border-radius:14px;background:var(--xp);color:var(--xp-ink);font-family:var(--f-head);font-size:20px}
+.chest.open{background:var(--surface);color:var(--ink);border:2px solid var(--xp)}
+.pop{animation:pop .35s ease-out}
+@keyframes pop{0%{transform:scale(.8);opacity:.2}70%{transform:scale(1.06)}100%{transform:scale(1);opacity:1}}
+@media (prefers-reduced-motion:reduce){.pop{animation:none}}
+/* כתיבה */
+.crit{display:grid;gap:6px;padding:12px 0;border-top:1px solid var(--line)}
+.crit:first-of-type{border-top:0}
+.fix{display:grid;gap:4px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;margin:8px 0}
+.wc{font-variant-numeric:tabular-nums;font-weight:700}
+.wc.good{color:var(--good)} .wc.low{color:var(--warn)}
+.tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-variant-numeric:tabular-nums}
+th,td{padding:10px 12px;text-align:right;border-bottom:1px solid var(--line);font-size:15px}
+th{font-size:13px;color:var(--muted);font-weight:500}
+tr:last-child td{border-bottom:0}
+details.st{border-top:1px solid var(--line);padding:10px 0}
+details.st summary{cursor:pointer;display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap}
+.check{display:flex;gap:10px;align-items:flex-start;padding:6px 0}
+.check input{margin-top:6px;width:18px;height:18px;flex:none;accent-color:var(--accent)}
+.links{display:grid;gap:8px;padding:0;margin:8px 0 24px;list-style:none}
+.picker{display:flex;gap:10px;flex-wrap:wrap;align-items:end}
+.picker label{min-width:110px;flex:1}
+a{color:var(--accent)}
+.toast{position:fixed;inset-inline:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));max-width:420px;margin-inline:auto;background:var(--ink);color:var(--bg);border-radius:12px;padding:12px 16px;font-weight:700;text-align:center;z-index:9}
+.spinner{width:22px;height:22px;border:3px solid var(--line);border-top-color:var(--accent);border-radius:50%;animation:sp 1s linear infinite;display:inline-block;vertical-align:middle}
+@keyframes sp{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.spinner{animation-duration:3s}}
+.avbtn{background:none;border:0;padding:0;border-radius:50%;line-height:0;min-height:0}
+.ladder{display:flex;gap:6px;flex-wrap:wrap}
+.nd{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:700;border:2px solid var(--line);color:var(--muted);font-variant-numeric:tabular-nums}
+.nd.done{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.nd.cur{border-color:var(--xp);color:var(--ink);box-shadow:0 0 0 3px color-mix(in srgb,var(--xp) 30%,transparent)}
+.stars{display:flex;gap:6px;justify-content:center;margin:10px 0;color:var(--xp)}
+.stars svg{width:38px;height:38px}
+.stars .off{color:var(--line)}
+.cel{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));inset-inline:16px;max-width:460px;margin-inline:auto;z-index:20;display:flex;gap:12px;align-items:center;background:var(--surface);border:2px solid var(--xp);border-radius:14px;padding:12px 16px;box-shadow:0 10px 30px rgba(0,0,0,.28)}
+.cel[hidden]{display:none}
+.cel-i{width:44px;height:44px;flex:none;color:var(--xp)}
+.cel-i svg{width:100%;height:100%}
+.cel-l{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--xp);font-weight:700}
+.skins{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:10px}
+.skin{display:grid;justify-items:center;gap:6px;padding:12px 8px;border:2px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);text-align:center;font-size:14px}
+.skin.sel{border-color:var(--accent)}
+.skin.lock{opacity:.5;cursor:default}
+.sw{display:block;width:48px;height:48px;border-radius:50%}
+#wrap.th-sunset{--accent:#b4531a;--soft:#f6e6da}
+#wrap.th-forest{--accent:#2f7d32;--soft:#e2f0e2}
+#wrap.th-night{--accent:#2a6fd1;--soft:#e1ebfa}
+@media (prefers-color-scheme:dark){
+ :root:not([data-theme="light"]) #wrap.th-sunset{--accent:#ff9a5a;--accent-ink:#1d0e00;--soft:#3a2415}
+ :root:not([data-theme="light"]) #wrap.th-forest{--accent:#6fcf74;--accent-ink:#0b1f0c;--soft:#173a1a}
+ :root:not([data-theme="light"]) #wrap.th-night{--accent:#7aa6ff;--accent-ink:#0a1530;--soft:#162a52}}
+:root[data-theme="dark"] #wrap.th-sunset{--accent:#ff9a5a;--accent-ink:#1d0e00;--soft:#3a2415}
+:root[data-theme="dark"] #wrap.th-forest{--accent:#6fcf74;--accent-ink:#0b1f0c;--soft:#173a1a}
+:root[data-theme="dark"] #wrap.th-night{--accent:#7aa6ff;--accent-ink:#0a1530;--soft:#162a52}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&family=Secular+One&display=swap" rel="stylesheet">
+
+<div id="wrap" dir="rtl" lang="he"><div id="app"><p class="muted">טוען…</p></div><div id="toast" class="toast" hidden role="status"></div><div id="cel" class="cel" hidden role="status" aria-live="polite"></div></div>
+
+<script>
+/* ======================================================= תוכן ======================================================= */
+const LEVELS={1:{name:'מתחילים',cefr:'A1–A2',hint:'כיתות ז–ח'},2:{name:'ביניים',cefr:'A2–B1',hint:'כיתות ח–י'},3:{name:'מתקדמים',cefr:'B1–B2',hint:'כיתות י–יב, הכנה לבגרות'}};
+const Q=(q,o,why)=>({q,o,why}); // o[0] היא התשובה הנכונה
+const UNITS=[
+{id:'1a',lvl:1,kind:'quiz',skill:'דקדוק',title:'To be והווה פשוט',qs:[
+ Q('My sister ___ a student.',['is','am','are','be'],'sister הוא יחיד בגוף שלישי, לכן is.'),
+ Q('They ___ football every Friday.',['play','plays','playing','is play'],'עם they משתמשים בצורה הבסיסית של הפועל.'),
+ Q('She ___ like spicy food.',["doesn't","don't","isn't",'not'],'בגוף שלישי יחיד שוללים עם doesn\'t.'),
+ Q('___ you live near the school?',['Do','Does','Are','Is'],'שאלה בהווה פשוט עם you נפתחת ב-Do.'),
+ Q('Tom ___ up at 6:30 every day.',['gets','get','getting','is get'],'Tom הוא גוף שלישי יחיד, לכן הפועל מקבל s.'),
+ Q('How many brothers ___ you have?',['do','does','are','is'],'שאלה עם you בהווה פשוט משתמשת ב-do.')]},
+{id:'1b',lvl:1,kind:'quiz',skill:'דקדוק',title:'עבר פשוט',qs:[
+ Q('Yesterday we ___ to the beach.',['went','go','goes','gone'],'go הוא פועל לא-רגיל, צורת העבר שלו went.'),
+ Q('I ___ my homework last night.',["didn't finish","didn't finished","not finish","don't finish"],'אחרי didn\'t משתמשים בצורה הבסיסית של הפועל.'),
+ Q('___ she call you this morning?',['Did','Do','Does','Was'],'שאלה בעבר פשוט נפתחת ב-Did.'),
+ Q('He ___ a great film last weekend.',['saw','see','seen','sees'],'צורת העבר של see היא saw.'),
+ Q('We ___ at home because it rained.',['stayed','stay','staying','stays'],'פועל רגיל בעבר מקבל ed.'),
+ Q('The test ___ difficult, so many students failed.',['was','were','is','be'],'נושא יחיד בעבר: was.')]},
+{id:'1c',lvl:1,kind:'quiz',skill:'אוצר מילים',title:'בית ספר ויומיום',qs:[
+ Q('I use ___ to cut paper.',['scissors','a ruler','an eraser','a backpack'],'scissors הן מספריים.'),
+ Q('The opposite of "cheap" is ___.',['expensive','small','early','heavy'],'cheap הוא זול, expensive הוא יקר.'),
+ Q("My mother's brother is my ___.",['uncle','cousin','nephew','grandfather'],'אח של אמא הוא דוד, uncle.'),
+ Q('We eat ___ in the morning.',['breakfast','dinner','lunch','supper'],'breakfast היא ארוחת בוקר.'),
+ Q("It's very cold today. Put on your ___.",['coat','sandals','shorts','sunglasses'],'coat הוא מעיל, מתאים ליום קר.'),
+ Q('A person who teaches in a school is a ___.',['teacher','doctor','driver','waiter'],'teacher הוא מורה.')]},
+{id:'1r',lvl:1,kind:'read',skill:'הבנת הנקרא',title:'My New School',
+ text:"Dana started at a new school in September. At first she was nervous because she didn't know anyone. On the first day, a girl named Maya showed her the library and the canteen. They discovered that they both love basketball, so they joined the school team. Now Dana goes to practice on Tuesdays and Thursdays after school. She says the new school is bigger than her old one, but the teachers are friendly and she has many friends.",
+ qs:[
+ Q('Why was Dana nervous at first?',["She didn't know anyone.",'The school was far away.','She hated basketball.','The teachers were unfriendly.'],'כתוב: "she didn\'t know anyone".'),
+ Q('What did Maya show Dana?',['The library and the canteen.','The gym and the yard.','The teachers\' room.','The bus stop.'],'בשורה השלישית: the library and the canteen.'),
+ Q('What do the two girls have in common?',['They both love basketball.','They live nearby.','They have the same teacher.','They are in the same class.'],'הם גילו ששניהם אוהבים כדורסל.'),
+ Q('When does Dana go to practice?',['On Tuesdays and Thursdays.','Every morning.','On Fridays.','Only in September.'],'כתוב: Tuesdays and Thursdays after school.'),
+ Q('Compared to her old school, the new school is ___.',['bigger','smaller','older','cheaper'],'כתוב: "bigger than her old one".')]},
+{id:'1w',lvl:1,kind:'write',skill:'כתיבה',title:'סדר היום שלי',
+ prompt:'Write 5–6 sentences about your daily routine. Use the present simple.',
+ list:['כל משפט מתחיל באות גדולה ומסתיים בנקודה','יש לפחות 5 משפטים','בגוף שלישי יחיד (he/she) הוספתי s לפועל','השתמשתי בביטויי זמן (in the morning, at 7:00, every day)','קראתי שוב ובדקתי איות']},
+{id:'2a',lvl:2,kind:'quiz',skill:'דקדוק',title:'Present perfect או עבר פשוט',qs:[
+ Q('I ___ this film three times.',['have seen','saw','see','was seeing'],'חוויה עד היום ללא זמן מוגדר: present perfect.'),
+ Q('She ___ in Haifa in 2019.',['lived','has lived','lives','is living'],'זמן מוגדר בעבר (2019) דורש עבר פשוט.'),
+ Q("We haven't met ___ last year.",['since','for','ago','during'],'since בא עם נקודת זמן; for בא עם משך.'),
+ Q('___ you ever been to London?',['Have','Did','Do','Are'],'ever עם been: Have you ever been...'),
+ Q('He ___ here for ten years.',['has worked','worked','works','is working'],'משך שנמשך עד עכשיו, עם for: present perfect.'),
+ Q('When ___ you finish your project?',['did','have','do','are'],'When עם פעולה שהסתיימה: עבר פשוט.')]},
+{id:'2b',lvl:2,kind:'quiz',skill:'דקדוק',title:'השוואות ופעלי מודל',qs:[
+ Q('This exam was ___ than the last one.',['more difficult','most difficult','difficulter','difficult'],'לתואר ארוך מוסיפים more בהשוואה.'),
+ Q('She is the ___ student in the class.',['best','better','most good','goodest'],'good הוא תואר לא-רגיל: better, best.'),
+ Q("You ___ wear a seatbelt. It's the law.",['must','might','can','would'],'חובה חזקה: must.'),
+ Q("You ___ come with us if you don't want to.",["don't have to","mustn't","can't","shouldn't"],"don't have to אומר שאין חובה. mustn't אומר שאסור."),
+ Q("He's not as tall ___ his brother.",['as','than','like','that'],'המבנה not as ... as.'),
+ Q('___ I borrow your pen, please?',['Could','Must','Need','Ought'],'בקשה מנומסת: Could I...?')]},
+{id:'2c',lvl:2,kind:'quiz',skill:'אוצר מילים',title:'טכנולוגיה וסביבה',qs:[
+ Q('Plastic bags harm the ___, so many shops stopped giving them.',['environment','entertainment','equipment','experience'],'environment היא הסביבה.'),
+ Q('To ___ a file means to copy it from the internet to your device.',['download','delete','log in','scroll'],'download הוא הורדה.'),
+ Q('Solar panels produce ___ energy from the sun.',['renewable','expensive','harmful','ancient'],'renewable הוא מתחדש.'),
+ Q('He was ___ by the news and could not speak.',['shocked','shock','shocking','shocks'],'כשמתארים איך אדם מרגיש משתמשים בסיומת ed: shocked.'),
+ Q('Her ___ to the team helped it win.',['contribution','contributing','contributed','contributes'],'אחרי her בא שם עצם: contribution.'),
+ Q('We should ___ glass and paper instead of throwing them away.',['recycle','waste','pollute','consume'],'recycle הוא למחזר.')]},
+{id:'2r',lvl:2,kind:'read',skill:'הבנת הנקרא',title:'Teenagers and Sleep',
+ text:"Many teenagers do not get enough sleep. Experts say that people aged 13 to 18 need between eight and ten hours every night, but most sleep for only six or seven. One reason is that their body clock changes during adolescence, so they feel tired later in the evening. Another reason is the use of phones and tablets in bed; the light from screens makes it harder to fall asleep. Lack of sleep can cause problems at school, such as poor concentration and worse grades. Some schools in other countries have started lessons later in the morning, and students there reported feeling healthier and happier. Doctors also recommend switching off devices an hour before bedtime.",
+ qs:[
+ Q('How many hours of sleep do teenagers need?',['Eight to ten.','Six to seven.','Ten to twelve.','Five to six.'],'כתוב: between eight and ten hours.'),
+ Q('Why do teenagers feel tired later in the evening?',['Their body clock changes.','They study too much.','They eat late.','They play sports.'],'הסיבה הראשונה: the body clock changes.'),
+ Q('Why are screens a problem?',['Their light makes it harder to fall asleep.','They cost a lot of money.','They break easily.','They make noise.'],'כתוב: the light from screens makes it harder to fall asleep.'),
+ Q('What happened in schools that start later?',['Students felt healthier and happier.','Students got lower grades.','Teachers worked less.','Lessons became longer.'],'כך דיווחו התלמידים: healthier and happier.'),
+ Q('What do doctors recommend?',['Switching off devices an hour before bed.','Sleeping during the day.','Using tablets in bed.','Drinking coffee in the evening.'],'ההמלצה האחרונה בטקסט.')]},
+{id:'2w',lvl:2,kind:'write',skill:'כתיבה',title:'מייל לחבר',
+ prompt:'Write an email (80–100 words) to an English-speaking friend about a trip you took recently.',
+ list:['יש פתיחה (Hi ...) וסיום (Best wishes / See you soon)','כתבתי על הטיול בעבר פשוט','יש לפחות משפט אחד ב-present perfect','חילקתי לפסקאות','יש 80 מילים לפחות','בדקתי איות ופיסוק']},
+{id:'3a',lvl:3,kind:'quiz',skill:'דקדוק',title:'משפטי תנאי ומבנה סביל',qs:[
+ Q('If I ___ more time, I would learn another language.',['had','have','will have','would have'],'תנאי סוג 2: if + עבר, would + בסיס.'),
+ Q('If she had studied harder, she ___ the exam.',['would have passed','would pass','will pass','had passed'],'תנאי סוג 3: if + past perfect, would have + V3.'),
+ Q('The bridge ___ in 1998.',['was built','built','has built','is building'],'סביל בעבר: was/were + V3.'),
+ Q('The results ___ next week.',['will be announced','will announce','announced','are announce'],'סביל בעתיד: will be + V3.'),
+ Q("Unless you hurry, you ___ the bus.",['will miss',"won't miss",'would miss','missed'],'unless פירושו if not, לכן ההמשך חיובי: will miss.'),
+ Q('English ___ all over the world.',['is spoken','speaks','is speaking','spoke'],'הנושא הוא מושא הפעולה, לכן סביל.')]},
+{id:'3b',lvl:3,kind:'quiz',skill:'דקדוק',title:'דיבור עקיף ומילות קישור',qs:[
+ Q('"I am tired," she said. → She said that she ___ tired.',['was','is','has been','were'],'בדיבור עקיף הזמן "נסוג אחורה": am הופך ל-was.'),
+ Q('"We\'ll call you tomorrow," they said. → They said they ___ us the next day.',['would call','will call','called','call'],'will הופך ל-would, ו-tomorrow הופך ל-the next day.'),
+ Q('He asked me, "Where do you live?" → He asked me where ___.',['I lived','did I live','do I live','I live'],'בשאלה עקיפה סדר המילים הוא כמו במשפט רגיל, והזמן נסוג אחורה.'),
+ Q('___ it was raining, we went for a walk.',['Although','Because','So','Despite'],'Although מביע ניגוד ובא לפני משפט שלם.'),
+ Q('She was exhausted; ___, she kept working.',['nevertheless','therefore','for example','similarly'],'nevertheless הוא "אף על פי כן".'),
+ Q("He failed the test ___ he hadn't studied.",['because','although','however','despite'],'because מביא סיבה.')]},
+{id:'3c',lvl:3,kind:'quiz',skill:'אוצר מילים',title:'אוצר מילים אקדמי',qs:[
+ Q('The study ___ that screen time affects sleep.',['suggests','pretends','refuses','avoids'],'suggests כאן הוא "מרמז/מצביע על".'),
+ Q('The new law is ___: everyone must obey it.',['mandatory','optional','temporary','ordinary'],'mandatory הוא חובה.'),
+ Q('A ___ of students (a small part of the group) disagreed.',['minority','majority','authority','priority'],'minority היא מיעוט.'),
+ Q('Her speech was so ___ that many people changed their minds.',['persuasive','persistent','passive','precious'],'persuasive הוא משכנע.'),
+ Q('We need to ___ the problem before we look for solutions.',['analyse','ignore','delay','predict'],'analyse הוא לנתח.'),
+ Q('The company tried to ___ costs by using less energy.',['reduce','inflate','expand','provoke'],'reduce הוא להפחית.')]},
+{id:'3r',lvl:3,kind:'read',skill:'הבנת הנקרא',title:'The Homework Debate',
+ text:"Homework has been part of school life for over a century, yet its value is still debated. Supporters argue that practising at home helps students remember what they learned and teaches them to work independently. Critics, however, point to research showing that after a certain amount of time the benefits drop sharply, while stress and tiredness increase. In Finland, a country with high educational achievement, students receive relatively little homework, which suggests that more is not necessarily better. Some educators therefore propose that teachers set shorter, more meaningful tasks, and that the quality of an assignment matters more than its length. Others add that homework can widen inequality, since not every child has a quiet place or a computer at home. Despite these concerns, few schools are ready to abolish homework entirely; most are looking for a balance.",
+ qs:[
+ Q('What is the main idea of the text?',['The value of homework is debated and schools seek a balance.','Homework should be abolished.','Finland has the best schools.','Students enjoy homework.'],'הטקסט מציג דעות שונות ומסיים בחיפוש איזון.'),
+ Q('Why do critics object to long homework?',['Benefits drop after a while while stress rises.','It is too easy.','Teachers do not check it.','It costs too much.'],'כתוב: benefits drop sharply, stress and tiredness increase.'),
+ Q('What does the example of Finland suggest?',['More homework does not necessarily bring better results.','Finnish students are lazy.','Homework is illegal there.','Other countries should copy their tests.'],'הטקסט אומר: more is not necessarily better.'),
+ Q('"Widen inequality" means to ___.',['make the differences between students bigger','make all students equal','reduce the cost of school','increase the number of tasks'],'widen הוא להרחיב/להגדיל, inequality הוא אי-שוויון.'),
+ Q('According to the text, what do most schools want?',['A balance rather than abolishing homework.','To stop giving tests.','To give much more homework.','To close early.'],'המשפט האחרון בטקסט.'),
+ Q("What is the writer's attitude?",['Balanced: presents several views without taking a side.','Strongly against homework.','Strongly in favour of homework.','Uninterested.'],'הכותב מציג תומכים, מבקרים ופתרונות בלי להכריע.')]},
+{id:'3w',lvl:3,kind:'write',skill:'כתיבה',title:'מאמר דעה',
+ prompt:'Should schools ban mobile phones during the school day? Write an article (120–150 words) expressing your opinion.',
+ list:['בפתיחה יש עמדה ברורה','יש לפחות שני נימוקים, כל אחד עם דוגמה','התייחסתי לטיעון נגדי והשבתי עליו','השתמשתי במילות קישור (however, in addition, although, therefore)','יש סיכום','יש 120 מילים לפחות','בדקתי איות, זמנים ופיסוק']}
+];
+
+/* אוצר מילים לפי Bands של משרד החינוך. המילים נבדקו מול רשימות Lexical Band I–III הרשמיות (2020, עודכן 2023). התרגום לעברית נכתב כאן. */
+const BANDS={1:{name:'Band I',sub:'יסודי · עד כיתה ו׳ · A1–A2',x:'LexicalBand1'},2:{name:'Band II',sub:'חטיבת ביניים · עד כיתה ט׳ · A2–B1',x:'LexicalBand2'},3:{name:'Band III',sub:'תיכון · עד כיתה יא׳ · B1–B2',x:'LexicalBand3'}};
+const VSETS=[
+{id:'b1s',band:1,title:'בית הספר',w:[['homework','שיעורי בית'],['classroom','כיתה'],['teacher','מורה'],['lesson','שיעור'],['notebook','מחברת'],['pencil','עיפרון'],['ruler','סרגל'],['bag','תיק'],['test','מבחן'],['break','הפסקה'],['sport','ספורט'],['music','מוזיקה']]},
+{id:'b1f',band:1,title:'פנאי ובילויים',w:[['movie','סרט'],['phone','טלפון'],['camera','מצלמה'],['computer','מחשב'],['photo','תמונה (צילום)'],['picture','ציור'],['party','מסיבה'],['dance','לרקוד'],['sing','לשיר'],['swim','לשחות'],['football','כדורגל'],['game','משחק']]},
+{id:'b1d',band:1,title:'אוכל ומקומות',w:[['breakfast','ארוחת בוקר'],['lunch','ארוחת צהריים'],['dinner','ארוחת ערב'],['pizza','פיצה'],['juice','מיץ'],['cake','עוגה'],['chocolate','שוקולד'],['sandwich','כריך'],['beach','חוף'],['park','פארק'],['street','רחוב'],['bus','אוטובוס']]},
+{id:'b2e',band:2,title:'רגשות',w:[['upset','נסער'],['shy','ביישן'],['calm','רגוע'],['proud','גאה'],['worried','מודאג'],['excited','נרגש'],['angry','כועס'],['confident','בטוח בעצמו'],['afraid','מפחד'],['happy','שמח'],['sad','עצוב']]},
+{id:'b2t',band:2,title:'טכנולוגיה ורשת',w:[['internet','אינטרנט'],['laptop','מחשב נייד'],['email','דוא״ל'],['chat','לשוחח בצ׳אט'],['video','סרטון'],['password','סיסמה'],['website','אתר אינטרנט'],['online','מקוון'],['battery','סוללה'],['download','להוריד'],['network','רשת'],['social','חברתי']]},
+{id:'b2c',band:2,title:'בידור ותרבות',w:[['festival','פסטיבל'],['concert','הופעה'],['band','להקה'],['actor','שחקן'],['director','במאי'],['fashion','אופנה'],['trend','מגמה'],['celebrity','ידוען'],['champion','אלוף'],['winner','מנצח'],['score','תוצאה, ניקוד'],['adventure','הרפתקה']]},
+{id:'b3a',band:3,title:'דעות וטיעונים',w:[['opinion','דעה'],['argue','להתווכח, לטעון'],['claim','טענה'],['conclusion','מסקנה'],['benefit','תועלת'],['advantage','יתרון'],['oppose','להתנגד'],['support','לתמוך'],['influence','השפעה'],['individual','יחיד'],['cause','גורם, לגרום'],['reason','סיבה'],['issue','סוגיה']]},
+{id:'b3s',band:3,title:'חברה וסביבה',w:[['environment','סביבה'],['pollution','זיהום'],['society','חברה'],['generation','דור'],['pressure','לחץ'],['challenge','אתגר'],['responsible','אחראי'],['government','ממשלה'],['law','חוק'],['rights','זכויות'],['equality','שוויון'],['risk','סיכון']]},
+{id:'b3c',band:3,title:'שינוי, מחקר ופעולה',w:[['require','לדרוש'],['increase','לעלות, להגדיל'],['decrease','לרדת, להקטין'],['prevent','למנוע'],['protect','להגן'],['attitude','גישה'],['behavior','התנהגות'],['reaction','תגובה'],['discovery','תגלית'],['career','קריירה'],['failure','כישלון'],['stress','לחץ נפשי'],['expert','מומחה'],['survey','סקר'],['research','מחקר']]},
+{id:'b2p',band:2,title:'אופי ונימוס',w:[['volunteer','מתנדב'],['charity','צדקה'],['poor','עני'],['rich','עשיר'],['fair','הוגן'],['honest','ישר'],['kind','אדיב'],['polite','מנומס'],['helpful','עוזר, מועיל'],['brave','אמיץ'],['creative','יצירתי'],['curious','סקרן'],['patient','סבלני']]},
+{id:'b3w',band:3,title:'עבודה והזדמנויות',w:[['experience','ניסיון'],['opportunity','הזדמנות'],['competition','תחרות'],['qualification','הכשרה, כישור'],['salary','משכורת'],['unemployed','מובטל'],['participate','להשתתף'],['cooperate','לשתף פעולה'],['encourage','לעודד'],['motivate','להניע'],['poverty','עוני'],['immigrant','מהגר']]},
+{id:'b3v',band:3,title:'דיבור, טיעון והמלצה',w:[['criticize','לבקר'],['complain','להתלונן'],['confess','להתוודות'],['admit','להודות'],['deny','להכחיש'],['refuse','לסרב'],['suggest','להציע'],['recommend','להמליץ'],['persuade','לשכנע'],['donate','לתרום'],['refugee','פליט'],['treatment','טיפול']]}
+];
+
+/* קטלוג נושאים להשלמה אוטומטית. [אנגלית, עברית, קטגוריה] */
+const TOPICS=[
+['Present simple','הווה פשוט','g'],['Present continuous','הווה ממושך','g'],['Past simple','עבר פשוט','g'],['Past continuous','עבר ממושך','g'],['Present perfect','הווה מושלם','g'],['Present perfect continuous','הווה מושלם ממושך','g'],['Past perfect','עבר מושלם','g'],['Past simple vs past continuous','עבר פשוט מול עבר ממושך','g'],['Past simple vs present perfect','עבר פשוט מול הווה מושלם','g'],
+['Future: will and going to','עתיד: will ו-going to','g'],['Zero and first conditional','תנאי סוג 0 וסוג 1','g'],['Second conditional','תנאי סוג 2','g'],['Third conditional','תנאי סוג 3','g'],['Wish and if only','משפטי משאלה: wish ו-if only','g'],['Passive voice','מבנה סביל','g'],['Reported speech','דיבור עקיף','g'],['Reported questions','שאלות בדיבור עקיף','g'],
+['Modal verbs','פעלי מודל','g'],['Prepositions of time','מילות יחס של זמן','g'],['Prepositions of place','מילות יחס של מקום','g'],['Prepositions','מילות יחס','g'],['Prepositions after adjectives','מילות יחס אחרי תארים','g'],['Verbs with prepositions','פעלים עם מילות יחס','g'],
+['Articles: a, an, the','a, an ו-the','g'],['Countable and uncountable nouns','שמות ספירים ובלתי ספירים','g'],['Quantifiers: some, any, much, many','כמויות: some, any, much, many','g'],['Comparatives and superlatives','תארים בהשוואה ובמעלה','g'],['Relative clauses','משפטי זיקה','g'],['Gerunds and infinitives','gerund ו-infinitive','g'],['Question tags','שאלות סיום (question tags)','g'],['Used to and would','הרגלים בעבר: used to ו-would','g'],['So, such, too, enough','so, such, too, enough','g'],['Word order','סדר מילים במשפט','g'],['Adjective order','סדר תארים','g'],['Pronouns','כינויי גוף','g'],['Possessives','שייכות: my, mine, his','g'],['Phrasal verbs','פעלים צירופיים','v'],
+['Linking words and connectors','מילות קישור','w'],['Collocations','צירופי מילים','v'],['Idioms','ניבים','v'],['Prefixes and suffixes','תחיליות וסיומות','v'],['Word formation','יצירת מילים','v'],['Confusing words','מילים מבלבלות','v'],['False friends','חברים כוזבים (מילים דומות עם משמעות שונה)','v'],['Spelling rules','כללי איות','v'],['Punctuation','פיסוק','w'],
+['Writing an email','כתיבת מייל','w'],['Writing an opinion article','כתיבת מאמר דעה','w'],['Writing a story','כתיבת סיפור','w'],['Writing a paragraph','בניית פסקה','w'],['Writing a formal letter','מכתב רשמי','w'],['Describing people and places','תיאור אנשים ומקומות','w'],
+['Reading comprehension strategies','אסטרטגיות להבנת הנקרא','r'],['Skimming and scanning','סריקה וקריאה מהירה','r'],['Understanding vocabulary from context','הבנת מילים מההקשר','r'],['Summarizing a text','סיכום טקסט','r'],['Listening and note-taking','האזנה ורישום הערות','r'],['Pronunciation and stress','הגייה והטעמה','r'],
+['Social media vocabulary','אוצר מילים: רשתות חברתיות','v'],['Gaming vocabulary','אוצר מילים: גיימינג','v'],['Environment vocabulary','אוצר מילים: סביבה','v'],['Feelings and emotions','רגשות','v'],['Sports vocabulary','אוצר מילים: ספורט','v'],['Technology and AI vocabulary','אוצר מילים: טכנולוגיה ו-AI','v']
+];
+const CATS={g:'דקדוק',v:'אוצר מילים',w:'כתיבה',r:'קריאה והאזנה'};
+
+/* ---------- כתיבה לבגרות ---------- */
+const TRACKS={
+ C:{name:'מודול C',min:70,max:90,pts:30,cap:25,crit:[['content','תוכן וארגון',10],['vocab','אוצר מילים',8],['language','שימוש בשפה',8],['mech','מכניקה',4]],ded:[[60,1],[50,3],[40,6],[30,10],[25,15],[0,30]],hint:'משימה קצרה: בדרך כלל מייל או תיאור'},
+ D:{name:'מודול D',min:80,max:100,pts:30,cap:25,crit:[['content','תוכן וארגון',10],['vocab','אוצר מילים',8],['language','שימוש בשפה',8],['mech','מכניקה',4]],ded:[[70,1],[60,2],[50,3],[40,6],[30,10],[25,15],[0,30]],hint:'משימה בינונית: מייל, סיפור או הבעת דעה'},
+ F:{name:'מודול F',min:100,max:120,pts:40,cap:50,crit:[['content','תוכן וארגון',8],['vocab','אוצר מילים',10],['language','שימוש בשפה',16],['mech','מכניקה',6]],ded:[[90,2],[80,4],[70,8],[60,12],[50,16],[40,18],[0,40]],hint:'משימה ארוכה יותר, ברמת 4–5 יחידות לימוד'},
+ G:{name:'מודול G',min:120,max:140,pts:40,cap:50,crit:[['content','תוכן וארגון',8],['vocab','אוצר מילים',10],['language','שימוש בשפה',16],['mech','מכניקה',6]],ded:[[110,2],[100,4],[90,8],[80,12],[70,16],[60,18],[50,20],[0,40]],hint:'המשימה הארוכה ביותר, ברמת 5 יחידות לימוד'}
+};
+const WTOPICS={
+ CD:[
+ ['email','You have just joined a new sports club or youth group. Write an email to a friend who lives abroad. Tell your friend what you do there, who you met and why you like it.'],
+ ['email','Your best friend’s birthday is next week. Write an email to another friend suggesting a surprise party. Explain your idea and what each person should do.'],
+ ['description','Describe your phone: what you use it for every day and one thing you would like to change about the way you use it.'],
+ ['story','Write about a day when something went wrong, for example when you were late, lost something or missed a bus. Say what happened and how you felt.'],
+ ['description','Describe a place in Israel where you like to spend time with friends. Say where it is, what you do there and why it is special.'],
+ ['email','You saw an interesting event online (a concert, a gaming tournament or a food festival). Write an email to a friend inviting them to come with you. Give details and explain why it will be fun.'],
+ ['story','Write about a time someone did something nice for you. Describe what happened and how you thanked them.'],
+ ['description','Describe a hobby or free-time activity that you enjoy and explain why a friend should try it.']],
+ FG:[
+ ['opinion','Many teenagers spend several hours a day on social media. Write an article for your school website giving your opinion about whether this is a problem. Support your opinion with reasons and examples.'],
+ ['opinion','Some people say that AI tools such as chatbots should be allowed to help students with homework. Others say this stops students from learning. Write your opinion.'],
+ ['story','Write a story that begins with: "I never thought a single text message could change my whole week." Include what happened, how you felt and how it ended.'],
+ ['opinion','Some schools in other countries start later in the morning so that teenagers can sleep more. Should Israeli schools do the same? Write an article giving your opinion.'],
+ ['article','A volunteer project in your town needs young people. Write an article encouraging teenagers to take part. Explain what they could do and what they would gain, and respond to one possible objection.'],
+ ['opinion','Is it better to spend a year travelling or volunteering after finishing school, before army service or university? Write an article giving your opinion, with reasons and at least one example.'],
+ ['story','Write about a time you tried something new that scared you at first, for example a performance, a competition or a trip alone. Describe what happened and what you learned.'],
+ ['opinion','Many young people follow influencers and buy what they recommend. Write an article about the advantages and disadvantages of this and give your opinion.']]
+};
+
+const BASE='https://meyda.education.gov.il/';
+const MODS=[['A','016381'],['B','016384'],['C','016382'],['D','016484'],['E','016471'],['F','016584'],['G','016582']];
+const RES=[
+ ['תוכנית הלימודים באנגלית 2020 (CEFR)',BASE+'files/Mazkirut_Pedagogit/English/Curriculum2020.pdf'],
+ ['טבלת רמות CEFR, Lexical Bands ו-Grammar Bands',BASE+'files/Mazkirut_Pedagogit/English/CurriculumTable2020.pdf'],
+ ['Lexical Band I (רשימה רשמית)',BASE+'files/Mazkirut_Pedagogit/English/CurriculumFilesAugust21/LexicalBand1.pdf'],
+ ['Lexical Band II (רשימה רשמית)',BASE+'files/Mazkirut_Pedagogit/English/CurriculumFilesAugust21/LexicalBand2.pdf'],
+ ['Lexical Band III (רשימה רשמית)',BASE+'files/Mazkirut_Pedagogit/English/CurriculumFilesAugust21/LexicalBand3.pdf'],
+ ['Grammar Band II (רשימה רשמית)',BASE+'files/Mazkirut_Pedagogit/English/CurriculumFilesAugust21/GrammarBandII.pdf'],
+ ['Grammar Band III (רשימה רשמית)',BASE+'files/Mazkirut_Pedagogit/English/CurriculumFilesAugust21/GrammarBandIII.pdf'],
+ ['מחוון כתיבה: מודולים C ו-D',BASE+'files/Pop/0files/english/Chativa-Elyona/Bagrut/RubricsCD2020.pdf'],
+ ['מחוון כתיבה: מודולים F ו-G',BASE+'files/Pop/0files/english/Chativa-Elyona/Bagrut/FGExternalInternal2020.pdf'],
+ ['מיקוד בגרות 2026',BASE+'files/portal_talmidim/mikud/2026/english.pdf'],
+ ['מיקוד בגרות 2024',BASE+'files/portal_talmidim/mikud/2024/english.pdf'],
+ ['מיקוד בגרות 2023',BASE+'files/portal_talmidim/mikud/2023/english.pdf'],
+ ['מיקוד בגרות 2022',BASE+'files/portal_talmidim/mikud/2022/english.pdf'],
+ ['שולחן המפמ"ר באנגלית (אתר רשמי)','https://english.education.gov.il/'],
+ ['פעילויות לימוד מקוונות לבגרות','https://pop.education.gov.il/tchumey_daat/english/chativa-elyona/study_topics/bagrut-online-learning-activities'],
+ ['ארכיון בגרויות באנגלית (שאלונים ופתרונות)','https://pop.education.gov.il/tchumey_daat/english/chativa-elyona/bagrut-exam/bagrut-archives/']
+];
+
+/* ======================================================= מצב ======================================================= */
+const LS='english-track-v2';
+const STANDALONE=!(window.claude&&window.claude.use);
+const NOAI=STANDALONE?'לא זמין בגרסה העצמאית של האתר.':'זמין רק כשהאתר נפתח דרך חשבון Claude.';
+let db=null,ref=null,uid=null,isOwner=false,sample=null,mode='loading',chain=Promise.resolve(),bannerMsg='';
+let P=null,roster=[],league=[];
+let ui={view:'home',lvl:null,edit:false,quiz:null,write:null,game:null,stage:null,lesson:null,essay:null,topicQ:'',topicCat:'',vband:null,gsrc:null,timer:null};
+const app=document.getElementById('app');
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pct=u=>u?Math.round(100*u.best/u.total):null;
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+const today=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
+const yesterday=()=>{const d=new Date(Date.now()-864e5);return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
+const mastered=p=>UNITS.filter(u=>u.kind==='write'?p.writing&&p.writing[u.id]&&p.writing[u.id].text:(p.units&&p.units[u.id]&&pct(p.units[u.id])>=80)).length;
+const avg=p=>{const v=Object.values(p.units||{}).map(pct);return v.length?Math.round(v.reduce((a,b)=>a+b,0)/v.length):null};
+const when=t=>t?new Date(t).toLocaleDateString('he-IL',{day:'numeric',month:'short'}):'—';
+const wordCount=t=>(t.trim().match(/[A-Za-z][A-Za-z'’-]*|\d+/g)||[]).length;
+const lvlOf=xp=>Math.floor(Math.sqrt(xp/40))+1;
+const say=t=>{try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=.9;speechSynthesis.speak(u)}catch(e){}};
+const IC={
+ fire:'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2c1 4-2 5-2 8 0 1.5 1 2.5 2 2.5s2-1 1.5-3c2 1 4 3.5 4 6a5.5 5.5 0 0 1-11 0c0-3 1.5-4.500 2.500-6.500C9.500 7.500 11.500 5.500 12 2z"/></svg>',
+ bolt:'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg>',
+ star:'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3 6.500 7 .8-5.200 4.800 1.500 7L12 17.500 5.700 21l1.500-7L2 9.300l7-.8z"/></svg>'
+};
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.hidden=false;clearTimeout(toast.h);toast.h=setTimeout(()=>{t.hidden=true},2200)}
+
+const weekId=()=>{const d=new Date();d.setDate(d.getDate()-d.getDay());return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
+const daysLeft=()=>7-new Date().getDay();
+function persist(){
+  P.updated=Date.now();
+  try{localStorage.setItem(LS,JSON.stringify(P))}catch(e){}
+  if(mode==='cloud'){
+    const lg={name:String(P.name||'').split(' ')[0].slice(0,16),weekXp:(P.wk&&P.wk.w===weekId())?P.wk.xp:0,week:weekId(),lv:lvlOf(P.xp||0),av:P.skin||'seed'};
+    chain=chain.then(()=>ref.set(JSON.parse(JSON.stringify(P)))).then(()=>db.doc('league/'+uid).set(lg)).catch(()=>{bannerMsg='השמירה בענן נכשלה. ההתקדמות נשמרת רק במכשיר הזה.'});
+  }
+}
+function addXP(n,why){
+  if(!n)return;
+  const before=lvlOf(P.xp||0);
+  P.xp=(P.xp||0)+n;
+  const t=today();
+  if(!P.wk||P.wk.w!==weekId())P.wk={w:weekId(),xp:0};
+  P.wk.xp+=n;
+  if(!P.day||P.day.d!==t)P.day={d:t,xp:0};
+  P.day.xp+=n;
+  if(!P.streak)P.streak={n:0,last:''};
+  if(P.streak.last!==t){P.streak.n=(P.streak.last===yesterday())?P.streak.n+1:1;P.streak.last=t}
+  persist();
+  const after=lvlOf(P.xp);
+  if(after>before)celebrate({k:'level',t:'עליתם לרמה '+after,s:'כל הכבוד על ההתמדה'});
+  else toast('+'+n+' XP'+(why?' · '+why:''));
+  checkAch();
+}
+function normalize(p){
+  p=Object.assign({units:{},writing:{},xp:0,vocab:{},topics:[],essays:[],best:{},day:{d:'',xp:0},streak:{n:0,last:''},paths:{},ach:{},unl:{},stats:{},skin:'seed',theme:'ocean'},p||{});
+  return p;
+}
+
+/* ======================================================= התקדמות: שלבים, הישגים וסקינים ======================================================= */
+const STAGE_MAX=10;
+const STAGES=[
+ ['מתחיל','recognise the basic form and the core rule in simple sentences'],
+ ['מתחמם','apply the rule in short everyday sentences with plausible distractors'],
+ ['בדרך',"typical school-test items at the student's level, in mixed contexts"],
+ ['מתקדם','harder distractors based on common mistakes of Hebrew speakers, short dialogues'],
+ ['מנוסה','error spotting and sentence completion in longer sentences'],
+ ['מומחה','sentence transformation and mixed structures, including related grammar'],
+ ['אלוף','Bagrut-style items at upper B1 / B2 with subtle differences and a short paragraph as context'],
+ ['מאסטר','near-native subtlety, exceptions and register, items based on a short passage'],
+ ['אגדה','rare exceptions and combining several rules in one item'],
+ ['על','the hardest items that a strong 5-point Bagrut student could meet']
+];
+const QUALITY=`
+LANGUAGE QUALITY RULES (very important):
+- All English must be natural, idiomatic, correct and proofread. Time expressions follow natural order and format: "Yesterday at 4 p.m." or "At 4 p.m. yesterday" (use p.m./a.m. or o'clock), never "At 4:00 yesterday". Never mix tenses inside an example. Check every example sentence against the rule it illustrates.
+- All Hebrew must be clear, correct, modern standard Hebrew in short sentences, not translated word-for-word from English. Address students in a gender-neutral way (plural, infinitive or impersonal), never with "אתה" or "את".
+- Before returning, re-read every sentence once and fix any error.
+`;
+const hash=str=>{let h=5381;for(const c of String(str).toLowerCase().replace(/[^a-z0-9]/g,''))h=((h<<5)+h+c.charCodeAt(0))|0;return h};
+const slug=t=>'t:'+String(t).toLowerCase().replace(/[^a-z0-9א-ת]+/g,'-').replace(/^-|-$/g,'').slice(0,40);
+const stat=k=>(P&&P.stats&&P.stats[k])||0;
+const words=()=>Object.values(P.vocab||{}).filter(v=>v>=2).length;
+const cleared=()=>Object.keys(P.paths||{}).reduce((a,k)=>a+pathStage(k),0);
+const maxStage=()=>Object.keys(P.paths||{}).reduce((a,k)=>Math.max(a,pathStage(k)),0);
+const unitTopic=u=>u.title+' ('+u.skill+', '+LEVELS[u.lvl].cefr+')';
+
+function ensurePath(key,title,topic){
+  if(!P.paths)P.paths={};
+  const p=P.paths[key]||(P.paths[key]={title:title||key,topic:topic||title||key,stage:0,stars:{},seen:[],recent:[]});
+  if(title)p.title=title;if(topic)p.topic=topic;
+  if(!p.seen)p.seen=[];if(!p.recent)p.recent=[];if(!p.stars)p.stars=
+{};
+  p.ts=Date.now();return p;
+}
+function addSeen(p,qs){qs.forEach(q=>{const h=hash(q);if(!p.seen.includes(h))p.seen.push(h);p.recent.push(String(q).slice(0,80))});p.seen=p.seen.slice(-200);p.recent=p.recent.slice(-12)}
+function pathStage(key){
+  const p=P.paths&&P.paths[key];let st=p?p.stage:0;
+  if(key.startsWith('u:')){const r=P.units&&P.units[key.slice(2)];if(r&&pct(r)>=80)st=Math.max(st,1)}
+  return st;
+}
+const starsOf=(score,total)=>score===total?3:score/total>=.8?2:score/total>=.6?1:0;
+function recordStage(key,n,score,total,title,topic){
+  const p=ensurePath(key,title,topic);
+  const pass=score/total>=.8,stars=starsOf(score,total);
+  let first=false;
+  if(pass){p.stars[n]=Math.max(p.stars[n]||0,stars);if(n>p.stage){p.stage=n;first=true}}
+  if(!P.stats)P.stats={};
+  if(stars===3)P.stats.threeStars=(P.stats.threeStars||0)+1;
+  const xp=pass?10+5*stars+(first?10:0):3*score;
+  return {pass,stars,first,xp,n};
+}
+function starsHTML(n){return `<div class="stars" role="img" aria-label="${n} כוכבים מתוך 3">${[1,2,3].map(i=>`<span class="${i<=n?'':'off'}">${IC.star}</span>`).join('')}</div>`}
+function ladderHTML(key){
+  const st=pathStage(key);let h='';
+  for(let n=1;n<=STAGE_MAX;n++){h+=`<span class="nd ${n<=st?'done':n===st+1?'cur':'lock'}" title="שלב ${n}: ${STAGES[n-1][0]}">${n}</span>`}
+  return `<div class="ladder" role="img" aria-label="שלבים שהושלמו: ${st} מתוך ${STAGE_MAX}">${h}</div>`;
+}
+const starsTotal=key=>{const p=P.paths&&P.paths[key];return p?Object.values(p.stars).reduce((a,b)=>a+b,0):0};
+
+/* ---------- סקינים וערכות צבעים ---------- */
+const SKINS=[
+ {id:'seed',kind:'skin',n:'נבט',c:'#2f9e6b',g:'M5 19C5 10 9 6 19 5c0 9-4 14-13 14z',u:{lvl:1}},
+ {id:'bolt',kind:'skin',n:'ברק',c:'#b98400',g:'M13 2 4 14h6l-1 8 9-12h-6z',u:{lvl:2}},
+ {id:'shield',kind:'skin',n:'מגן',c:'#2a6fd1',g:'M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5z',u:{lvl:3}},
+ {id:'rocket',kind:'skin',n:'טיל',c:'#c2412d',g:'M12 2c3 2 5 6 5 10l2 3-4 1-1 4h-4l-1-4-4-1 2-3c0-4 2-8 5-10zm0 6a2 2 0 1 0 0 4 2 2 0 0 0 0-4z',u:{lvl:5}},
+ {id:'flame',kind:'skin',n:'להבה',c:'#d9561f',g:'M12 2c1 4-2 5-2 8 0 1.5 1 2.5 2 2.5s2-1 1.5-3c2 1 4 3.5 4 6a5.5 5.5 0 0 1-11 0c0-3 1.5-4.5 2.5-6.5C9.5 7.5 11.5 5.5 12 2z',u:{ach:'streak7'}},
+ {id:'star',kind:'skin',n:'כוכב',c:'#a67c00',g:'m12 2 3 6.5 7 .8-5.2 4.8 1.5 7L12 17.5 5.7 21l1.5-7L2 9.3l7-.8z',u:{lvl:9}},
+ {id:'gem',kind:'skin',n:'יהלום',c:'#128f9e',g:'M7 3h10l5 6-10 13L2 9z',u:{lvl:12}},
+ {id:'crown',kind:'skin',n:'כתר',c:'#8f5f10',g:'M3 18 2 7l5 4 5-7 5 7 5-4-1 11z',u:{lvl:15}},
+ {id:'planet',kind:'skin',n:'כוכב לכת',c:'#4a58c4',g:'',u:{ach:'master'}}
+];
+const THEMES=[
+ {id:'ocean',kind:'theme',n:'ים',c:'#0b7a75',u:{lvl:1}},
+ {id:'sunset',kind:'theme',n:'שקיעה',c:'#b4531a',u:{lvl:4}},
+ {id:'forest',kind:'theme',n:'יער',c:'#2f7d32',u:{lvl:8}},
+ {id:'night',kind:'theme',n:'לילה',c:'#2a6fd1',u:{lvl:12}}
+];
+function avatar(id,size){
+  const s=SKINS.find(x=>x.id===id)||SKINS[0];
+  const glyph=s.id==='planet'?'<circle cx="12" cy="12" r="5" fill="#fff"/><ellipse cx="12" cy="12" rx="10" ry="3.5" fill="none" stroke="#fff" stroke-width="1.6" transform="rotate(-20 12 12)"/>':`<path d="${s.g}" fill="#fff" fill-rule="evenodd"/>`;
+  return `<svg viewBox="0 0 24 24" width="${size}" height="${size}" role="img" aria-label="${esc(s.n)}"><circle cx="12" cy="12" r="12" fill="${s.c}"/><g transform="translate(4.8 4.8) scale(.6)">${glyph}</g></svg>`;
+}
+const isUnlocked=it=>it.u.lvl?lvlOf(P.xp)>=it.u.lvl:!!(P.ach&&P.ach[it.u.ach]);
+const reqText=it=>it.u.lvl?'רמה '+it.u.lvl:'הישג: '+(ACH.find(a=>a.id===it.u.ach)||{n:''}).n;
+
+/* ---------- הישגים ---------- */
+const ACH=[
+ {id:'first_lesson',n:'צעד ראשון',d:'הכנתם שיעור ראשון בנושא חופשי',t:()=>(P.topics||[]).length>=1,xp:15},
+ {id:'first_stage',n:'שלב ראשון',d:'עברתם שלב ראשון במסלול',t:()=>cleared()>=1,xp:15},
+ {id:'three_stars',n:'שלושה כוכבים',d:'ענו נכון על כל השאלות בשלב',t:()=>stat('threeStars')>=1,xp:20},
+ {id:'climber',n:'מטפסים',d:'עברתם 5 שלבים בסך הכול',t:()=>cleared()>=5,xp:30},
+ {id:'peak',n:'עד הפסגה',d:'הגעתם לשלב 5 בנושא כלשהו',t:()=>maxStage()>=5,xp:40},
+ {id:'master',n:'מאסטר',d:'הגעתם לשלב 8 בנושא כלשהו',t:()=>maxStage()>=8,xp:80},
+ {id:'explorer',n:'חוקרי נושאים',d:'התחלתם 5 נושאים שונים',t:()=>Object.keys(P.paths||{}).length>=5,xp:30},
+ {id:'streak3',n:'שלושה ימים ברצף',d:'תרגלתם 3 ימים רצופים',t:()=>P.streak&&P.streak.n>=3,xp:15},
+ {id:'streak7',n:'שבוע של התמדה',d:'תרגלתם 7 ימים רצופים',t:()=>P.streak&&P.streak.n>=7,xp:40},
+ {id:'streak30',n:'חודש בלי הפסקה',d:'תרגלתם 30 ימים רצופים',t:()=>P.streak&&P.streak.n>=30,xp:150},
+ {id:'xp500',n:'500 XP',d:'צברתם 500 נקודות ניסיון',t:()=>P.xp>=500,xp:25},
+ {id:'xp1500',n:'1,500 XP',d:'צברתם 1,500 נקודות ניסיון',t:()=>P.xp>=1500,xp:60},
+ {id:'words50',n:'50 מילים',d:'למדתם 50 מילים מרשימות ה-Bands',t:()=>words()>=50,xp:25},
+ {id:'words100',n:'100 מילים',d:'למדתם 100 מילים מרשימות ה-Bands',t:()=>words()>=100,xp:50},
+ {id:'first_essay',n:'כותבים',d:'קיבלתם משוב ראשון על כתיבה',t:()=>(P.essays||[]).length>=1,xp:20},
+ {id:'essay80',n:'כתיבה מצוינת',d:'ציון 80% ומעלה בכתיבה לבגרות',t:()=>(P.essays||[]).some(e=>e.total/e.pts>=.8),xp:60},
+ {id:'gold_win',n:'מלך הזהב',d:'ניצחתם את רובו במסע הזהב',t:()=>stat('goldWins')>=1,xp:20},
+ {id:'blitz_clear',n:'מנקים את הלוח',d:'סיימתם את כל החומר בבליץ לפני הזמן',t:()=>stat('blitzCleared')>=1,xp:25},
+ {id:'perfect_unit',n:'בלי טעויות',d:'סיימתם יחידה עם 100%',t:()=>stat('perfectUnits')>=1,xp:20}
+];
+let checking=false;
+function checkAch(){
+  if(checking||!P)return;checking=true;
+  try{
+    if(!P.ach)P.ach={};if(!P.unl)P.unl={};
+    let changed=false;
+    for(const a of ACH){if(!P.ach[a.id]&&a.t()){P.ach[a.id]=Date.now();P.xp+=a.xp;changed=true;celebrate({k:'ach',t:a.n,s:a.d+' · +'+a.xp+' XP'})}}
+    for(const it of SKINS.concat(THEMES)){
+      if(!P.unl[it.id]&&isUnlocked(it)){P.unl[it.id]=1;changed=true;if(it.id!=='seed'&&it.id!=='ocean')celebrate({k:'skin',t:it.n,s:(it.kind==='skin'?'סקין חדש':'ערכת צבעים חדשה')+' · נפתח ב'+reqText(it),id:it.kind==='skin'?it.id:null,c:it.c})}
+    }
+    if(changed)persist();
+  }finally{checking=false}
+}
+const celQ=[];let celBusy=false;
+function celebrate(c){celQ.push(c);if(!celBusy)nextCel()}
+function nextCel(){
+  const el=document.getElementById('cel'),c=celQ.shift();
+  if(!el)return;
+  if(!c){celBusy=false;el.hidden=true;return}
+  celBusy=true;
+  const label={ach:'Achievement unlocked',skin:'Unlocked',level:'Level up',stage:'Stage cleared'}[c.k]||'';
+  const icon=c.id?avatar(c.id,44):c.c?`<span class="sw" style="background:${c.c};display:block;width:44px;height:44px"></span>`:IC.star;
+  el.className='cel pop';
+  el.innerHTML=`<div class="cel-i">${icon}</div><div><div class="cel-l en">${label}</div><b>${esc(c.t)}</b><div class="small muted">${esc(c.s||'')}</div></div>`;
+  el.hidden=false;
+  clearTimeout(nextCel.h);nextCel.h=setTimeout(()=>{el.hidden=true;setTimeout(nextCel,250)},4200);
+}
+
+/* ---------- שלבים ---------- */
+function stagePrompt(p,n){
+  const lv=LEVELS[P.level];
+  return `You are an experienced Israeli English teacher writing practice items for ONE student.
+Student: grade ${P.grade} (Israeli school system), level "${lv.name}" (CEFR ${lv.cefr}). Native language: Hebrew.
+Topic: """${p.topic}"""
+This is stage ${n} of ${STAGE_MAX} of a learning ladder. Stage ${n} focus: ${STAGES[n-1][1]}.
+Write exactly 6 NEW multiple-choice questions (4 options each, exactly one correct answer), in the style of an Israeli English test, clearly harder than stage ${n-1||1}.
+They must be completely different from the earlier questions. Do not reuse the same sentences, contexts or gap words. Earlier questions (do not repeat): ${p.recent.length?p.recent.join(' | '):'none'}
+Use the student's world (school, friends, gaming, social media, sports, music, phones, Israeli daily life), never childish for grades 10-12. Stay within the vocabulary and grammar bands of the Israeli Ministry of Education for stage ${n} of this learner.
+${QUALITY}
+Return ONLY JSON: {"questions":[{"q":"...","options":["a","b","c","d"],"answer":0,"why_he":"short Hebrew explanation naming the rule"}]}`;
+}
+async function genStage(p,n){
+  for(let attempt=0;attempt<2;attempt++){
+    const r=await sample.json(stagePrompt(p,n),{modelTier:'default',cache:false});
+    const qs=((r&&r.questions)||[]).filter(q=>q&&q.q&&Array.isArray(q.options)&&q.options.length>=2&&Number.isInteger(q.answer)&&q.options[q.answer]!=null);
+    const fresh=qs.filter(q=>!p.seen.includes(hash(q.q)));
+    if(fresh.length>=4){
+      const use=fresh.slice(0,6);addSeen(p,use.map(q=>q.q));
+      return use.map(q=>({q:q.q,why:q.why_he||'',o:shuffle(q.options.map((t,i)=>({t:String(t),ok:i===q.answer})))}));
+    }
+  }
+  throw {code:'gen'};
+}
+async function startStage(key,n){
+  const p=ensurePath(key);
+  ui.stage={key,n,state:'loading'};render();
+  if(!sample){ui.stage=null;render();toast('שלבים נוספים: '+NOAI);return}
+  try{
+    const qs=await genStage(p,n);
+    persist();
+    ui.stage={key,n,qs,qi:0,picked:null,score:0,state:'play'};
+  }catch(e){
+    ui.stage=null;
+    toast(e&&e.code==='not_granted'?'כדי להמשיך צריך לאשר את הגישה ל-Claude':'לא הצלחנו להכין שלב חדש. אפשר לנסות שוב');
+  }
+  render();window.scrollTo(0,0);
+}
+function renderStage(){
+  const S=ui.stage,p=P.paths[S.key];
+  const head=`<div class="row spread" style="margin-bottom:12px"><button class="btn ghost" data-act="stexit">יציאה</button><strong class="en">${esc(p.title)}</strong><span class="pill">שלב ${S.n}</span></div>`;
+  if(S.state==='loading'){app.innerHTML=`${head}<div class="card" style="text-align:center;padding:40px 16px"><div class="spinner" aria-hidden="true"></div><h2 style="margin-top:14px">שלב ${S.n}: ${STAGES[S.n-1][0]}</h2><p class="muted">מכינים שאלות חדשות. זה ייקח כמה שניות.</p></div>`;return}
+  if(S.state==='done'){
+    const r=S.res;
+    app.innerHTML=`${head}<div class="card pop" style="text-align:center"><h2>${r.pass?`שלב ${S.n} הושלם: ${STAGES[S.n-1][0]}`:'כמעט!'}</h2>
+     ${starsHTML(r.stars)}
+     <div class="stat" style="margin:12px 0"><b>${Math.round(100*S.score/S.qs.length)}%</b><span class="muted">${S.score} מתוך ${S.qs.length}</span></div>
+     <p>${r.pass?(S.n<STAGE_MAX?'השלב הבא קשה יותר ועם שאלות חדשות.':'השלמתם את כל השלבים בנושא הזה.'):'כדי לעבור שלב צריך 80% ומעלה. בניסיון הבא יהיו שאלות חדשות.'}</p>
+     <p style="margin:10px 0"><span class="pill xp">${IC.bolt}+${r.xp} XP</span></p>
+     <div style="display:flex;justify-content:center;margin:8px 0">${ladderHTML(S.key)}</div>
+     <div class="row" style="justify-content:center;margin-top:12px">${r.pass&&S.n>=STAGE_MAX?'':`<button class="btn" data-act="pathgo" data-v="${esc(S.key)}">${r.pass?'לשלב הבא':'ניסיון נוסף'}</button>`}<button class="btn ghost" data-act="stexit">חזרה</button></div></div>`;
+    return;
+  }
+  const q=S.qs[S.qi],ans=S.picked!==null;
+  app.innerHTML=`${head}<div class="bar" style="margin-bottom:16px"><i style="width:${Math.round(100*S.qi/S.qs.length)}%"></i></div>
+  <div class="card"><div class="tag">שלב ${S.n} · ${STAGES[S.n-1][0]} · שאלה ${S.qi+1} מתוך ${S.qs.length}</div>
+  <h3 class="en" style="margin-top:8px">${esc(q.q)}</h3>
+  <div class="opts">${q.o.map((o,k)=>`<button class="opt en ${ans?(o.ok?'right':(k===S.picked?'wrong':'')):''}" data-act="sgpick" data-v="${k}" ${ans?'disabled':''}>${esc(o.t)}</button>`).join('')}</div>
+  ${ans?`<div class="fb" role="status"><b>${q.o[S.picked].ok?'נכון. ':'לא מדויק. '}</b>${esc(q.why)}</div><button class="btn" data-act="sgnext">${S.qi+1<S.qs.length?'לשאלה הבאה':'לתוצאה'}</button>`:''}</div>`;
+}
+function finishStage(){
+  const S=ui.stage,p=P.paths[S.key];
+  const res=recordStage(S.key,S.n,S.score,S.qs.length,p.title,p.topic);
+  S.res=res;S.state='done';
+  addXP(res.xp,'שלב '+S.n);
+  if(res.pass)celebrate({k:'stage',t:'שלב '+S.n+' הושלם: '+STAGES[S.n-1][0],s:res.stars+' כוכבים מתוך 3'});
+  persist();checkAch();
+}
+function lessonDoneHTML(L){
+  const key=slug(L.topic),r=L.res;
+  return `<div class="stat" style="margin:12px 0"><b>${Math.round(100*L.score/L.quiz.length)}%</b><span class="muted">${L.score} מתוך ${L.quiz.length}</span></div>${r?starsHTML(r.stars):''}
+  <p style="margin:8px 0">${r&&r.pass?'שלב 1 הושלם. השלב הבא קשה יותר ועם שאלות חדשות.':'כדי לעבור שלב צריך 80% ומעלה. בניסיון הבא יהיו שאלות חדשות.'}</p>
+  <div style="margin:10px 0">${ladderHTML(key)}</div>
+  <div class="row" style="margin-top:12px"><button class="btn" data-act="pathgo" data-v="${esc(key)}">${r&&r.pass?'לשלב הבא':'ניסיון נוסף עם שאלות חדשות'}</button><button class="btn ghost" data-act="leave">נושא אחר</button></div>`;
+}
+function quizNextBtn(z){
+  const u=z.u;
+  if(u.kind!=='quiz')return `<button class="btn" data-act="retry" data-v="${u.id}">עוד ניסיון</button>`;
+  if(z.res&&z.res.pass)return `<button class="btn" data-act="pathgo" data-v="u:${u.id}">לשלב הבא</button>`;
+  return sample?`<button class="btn" data-act="pathgo" data-v="u:${u.id}">ניסיון נוסף עם שאלות חדשות</button>`:`<button class="btn" data-act="retry" data-v="${u.id}">עוד ניסיון</button>`;
+}
+
+/* ---------- מסך הישגים ---------- */
+function exportText(){
+  const L=[];
+  L.push('סיכום התקדמות · '+P.name+' · כיתה '+P.grade+' · '+LEVELS[P.level].name+' ('+LEVELS[P.level].cefr+')');
+  L.push('XP: '+P.xp+' · רמה '+lvlOf(P.xp)+' · רצף: '+((P.streak&&P.streak.n)||0)+' ימים · מילים שנלמדו: '+words());
+  const un=Object.keys(P.units||{}).map(id=>{const u=UNITS.find(x=>x.id===id);return u?u.title+' '+pct(P.units[id])+'%':null}).filter(Boolean);
+  if(un.length)L.push('יחידות: '+un.join(', '));
+  const pa=Object.values(P.paths||{}).map(x=>x.title+' (שלב '+x.stage+')');
+  if(pa.length)L.push('מסלולים: '+pa.join(', '));
+  (P.essays||[]).slice(0,3).forEach(e=>L.push('כתיבה '+e.track+': '+e.total+'/'+e.pts));
+  L.push('הישגים: '+Object.keys(P.ach||{}).length+' מתוך '+ACH.length);
+  L.push('תאריך: '+new Date().toLocaleDateString('he-IL'));
+  return L.join('\n');
+}
+function collectionHTML(){
+  const lv=lvlOf(P.xp),got=Object.keys(P.ach||{}).length;
+  const tile=(it,sel,act)=>{const ok=isUnlocked(it);return `<button class="skin ${sel?'sel':''} ${ok?'':'lock'}" ${ok?`data-act="${act}" data-v="${it.id}"`:'disabled'} aria-pressed="${sel}">${it.kind==='skin'?avatar(it.id,48):`<span class="sw" style="background:${it.c}"></span>`}<b>${it.n}</b><span class="small muted">${ok?(sel?'נבחר':'נפתח'):'ייפתח ב'+reqText(it)}</span></button>`};
+  return `<div class="stack">
+  <div class="row" style="gap:16px">${avatar(P.skin||'seed',64)}<div><h2>ההישגים שלי</h2><p class="muted">רמה ${lv} · ${got} מתוך ${ACH.length} הישגים</p></div></div>
+  <div class="card"><h3>סיכום התקדמות למורה</h3><p class="muted small">מעתיקים את הסיכום ושולחים למורה בוואטסאפ או במייל.</p><textarea id="xs" readonly style="min-height:140px;margin:8px 0;direction:rtl;text-align:right">${esc(exportText())}</textarea><button class="btn" data-act="copyexp">העתקת הסיכום</button> <span class="muted small" id="xmsg"></span></div>
+  <div><h3>סקינים</h3><p class="muted small">הסקין מופיע ליד השם שלכם בליגה. הוא נפתח לפי רמה והישגים.</p><div class="skins" style="margin-top:8px">${SKINS.map(s=>tile(s,(P.skin||'seed')===s.id,'skin')).join('')}</div></div>
+  <div><h3>ערכות צבעים</h3><div class="skins" style="margin-top:8px">${THEMES.map(s=>tile(s,(P.theme||'ocean')===s.id,'theme')).join('')}</div></div>
+  <div><h3>הישגים</h3><div class="grid" style="margin-top:8px">${ACH.map(a=>{const t=P.ach&&P.ach[a.id];return `<div class="card" style="${t?'':'opacity:.6'}"><div class="tag">${t?'נפתח ב-'+when(t):'נעול'}</div><h3>${a.n}</h3><span class="muted small">${a.d}</span><span class="small" style="color:var(--xp-text,var(--ink))">+${a.xp} XP</span></div>`}).join('')}</div></div></div>`;
+}
+
+/* ---------- מסלולי למידה ---------- */
+function unitsHTML(){
+  const lvl=ui.lvl||P.level,list=UNITS.filter(u=>u.lvl===lvl);
+  const mine=Object.entries(P.paths||{}).filter(([k])=>k.startsWith('t:')).sort((a,b)=>(b[1].ts||0)-(a[1].ts||0));
+  return `<div class="stack"><div><h2>מסלולי למידה</h2><p class="muted">בכל נושא עולים שלב אחרי שלב. כל שלב קשה יותר ומכיל שאלות חדשות. כדי לעבור שלב צריך 80% ומעלה.</p></div>
+  ${mine.length?`<div><h3>הנושאים שלי</h3><div class="grid" style="margin-top:8px">${mine.map(([k,p])=>{const st=pathStage(k);return `<button class="card link" data-act="pathgo" data-v="${esc(k)}"><span class="tag">${starsTotal(k)} כוכבים</span><h3 class="en">${esc(p.title)}</h3>${ladderHTML(k)}<span class="small muted">${st>=STAGE_MAX?'המסלול הושלם':'הבא: שלב '+(st+1)+' · '+STAGES[st][0]}</span></button>`}).join('')}</div></div>`:''}
+  <div><h3>יחידות לפי רמה</h3>
+  <div class="cats" role="group" aria-label="בחירת רמה">${[1,2,3].map(l=>`<button class="chip" aria-pressed="${lvl===l}" data-act="lvl" data-v="${l}">${LEVELS[l].name} · ${LEVELS[l].cefr}</button>`).join('')}</div>
+  <div class="grid">${list.map(unitCard).join('')}</div></div></div>`;
+}
+function unitCard(u){
+  let st,cls;
+  if(u.kind==='write'){const w=P.writing&&P.writing[u.id];st=w&&w.text?'נשלח '+when(w.ts):'טרם נכתב';cls=w&&w.text?'ok':'muted'}
+  else{const r=P.units&&P.units[u.id];if(!r){st='טרם נעשה';cls='muted'}else{const p=pct(r);st=`הציון הטוב ביותר: ${p}%`;cls=p>=80?'ok':'warn'}}
+  const n=u.kind==='write'?'משימת כתיבה':u.qs.length+' שאלות';
+  const key='u:'+u.id,lad=u.kind==='quiz'?ladderHTML(key):'';
+  const act=u.kind==='quiz'&&pathStage(key)>=1?'pathgo':'open';
+  const val=act==='pathgo'?key:u.id;
+  const nxt=u.kind==='quiz'&&pathStage(key)>=1&&pathStage(key)<STAGE_MAX?`<span class="small">הבא: שלב ${pathStage(key)+1} · ${STAGES[pathStage(key)][0]}</span>`:'';
+  return `<button class="card link" data-act="${act}" data-v="${esc(val)}"><span class="tag">${u.skill} · ${n}</span><h3>${esc(u.title)}</h3>${lad}<span class="small ${cls}" style="font-weight:700">${st}</span>${nxt}</button>`;
+}
+
+/* ======================================================= אתחול ======================================================= */
+async function init(){
+  let user=null;
+  try{user=await window.claude?.use?.('user')}catch(e){}
+  try{uid=user?await user.id():null;isOwner=!!(user&&user.isOwner())}catch(e){}
+  try{db=await window.claude?.use?.('db')}catch(e){}
+  try{sample=await window.claude?.use?.('sample')}catch(e){sample=null}
+  if(db&&uid){
+    try{ref=db.doc('students/'+uid);const s=await ref.get();if(s.exists)P=s.data();mode='cloud'}catch(e){mode='local'}
+  }else mode='local';
+  if(!P){try{P=JSON.parse(localStorage.getItem(LS)||localStorage.getItem('english-track-v1')||'null')}catch(e){}}
+  if(P){P=normalize(P);ui.lvl=P.level}
+  if(STANDALONE)bannerMsg='ההתקדמות נשמרת במכשיר הזה בלבד. בלשונית "הישגים" אפשר להעתיק סיכום התקדמות ולשלוח אותו למורה.';
+  else if(mode==='local'&&!isOwner)bannerMsg='ההתקדמות נשמרת רק במכשיר הזה. כדי שהמורה יראה אותה, יש לפתוח את הקישור שנשלח מהמורה ולהתחבר לחשבון.';
+  if(mode==='cloud'){db.collection('league').where('week','==',weekId()).onSnapshot(s=>{league=s.docs.map(d=>({id:d.id,...d.data()}));if(ui.view==='league'&&!ui.game&&!ui.quiz)render()},()=>{})}
+  if(isOwner&&db){db.collection('students').onSnapshot(s=>{roster=s.docs.map(d=>({id:d.id,...d.data()}));if(ui.view==='teacher'&&!ui.game&&!ui.quiz)render()},()=>{})}
+  render();
+}
+
+/* ======================================================= מסגרת ======================================================= */
+function stopTimer(){if(ui.timer){clearInterval(ui.timer);ui.timer=null}}
+function render(){
+  if(mode==='loading')return;
+  if(P){const w=document.getElementById('wrap');if(w)w.className='th-'+(P.theme||'ocean')}
+  if(!P)return renderProfile(true);
+  if(ui.edit)return renderProfile(false);
+  if(ui.stage)return renderStage();
+  if(ui.quiz)return renderQuiz();
+  if(ui.write)return renderWriteUnit();
+  if(ui.game)return renderGame();
+  if(ui.lesson&&ui.lesson.mode==='view')return renderLesson();
+  const tabs=[['home','בית'],['topics','חיפוש נושא'],['vocab','אוצר מילים'],['games','משחקים'],['league','ליגה'],['bagrut','כתיבה לבגרות'],['paths','מסלולים'],['collection','הישגים'],['res','חומרי משרד החינוך']];
+  if(isOwner)tabs.push(['teacher','מבט מורה']);
+  const lv=lvlOf(P.xp);
+  app.innerHTML=`
+  <header class="top"><div><h1>מסלול אנגלית</h1><div class="muted small">${esc(P.name)} · כיתה ${esc(P.grade)} · ${LEVELS[P.level].name} (${LEVELS[P.level].cefr})</div></div>
+  <div class="chips"><button class="avbtn" data-act="tab" data-v="collection" aria-label="ההישגים שלי">${avatar(P.skin||'seed',40)}</button><span class="pill" title="רצף ימים">${IC.fire}${P.streak.n}</span><span class="pill xp" title="נקודות ניסיון">${IC.bolt}${P.xp} XP</span><span class="pill" title="רמה">${IC.star}${lv}</span><button class="btn ghost" data-act="editprofile">פרופיל</button></div></header>
+  ${bannerMsg?`<div class="banner" role="status">${esc(bannerMsg)}</div>`:''}
+  <div class="tabs" role="tablist">${tabs.map(([k,l])=>`<button class="tab" role="tab" aria-selected="${ui.view===k}" data-act="tab" data-v="${k}">${l}</button>`).join('')}</div>
+  ${({home:homeHTML,topics:topicsHTML,vocab:vocabHTML,games:gamesHTML,league:leagueHTML,bagrut:bagrutHTML,paths:unitsHTML,collection:collectionHTML,res:resHTML,teacher:teacherHTML})[ui.view]()}`;
+  afterRender();
+}
+function afterRender(){
+  if(ui.view==='topics')bindCombo();
+  if(ui.view==='res')bindRes();
+  if(ui.view==='bagrut')bindBagrut();
+}
+function renderProfile(first){
+  const p=P||{name:'',grade:'ט',level:2};
+  app.innerHTML=`<header class="top"><div><h1>${first?'ברוכים הבאים למסלול אנגלית':'עריכת פרופיל'}</h1><p class="muted">${first?'כמה פרטים כדי להתחיל. אפשר לשנות אותם בכל זמן.':''}</p></div></header>
+  ${bannerMsg?`<div class="banner" role="status">${esc(bannerMsg)}</div>`:''}
+  <form class="form" id="pf">
+   <label class="f" for="pn">שם</label><input id="pn" type="text" value="${esc(p.name)}" required maxlength="40" autocomplete="name">
+   <label class="f" for="pg">כיתה</label><select id="pg">${['ז','ח','ט','י','יא','יב'].map(g=>`<option ${g===p.grade?'selected':''}>${g}</option>`).join('')}</select>
+   <label class="f" for="pl">רמה</label><select id="pl">${[1,2,3].map(l=>`<option value="${l}" ${l==p.level?'selected':''}>${LEVELS[l].name} · ${LEVELS[l].cefr} · ${LEVELS[l].hint}</option>`).join('')}</select>
+   <div class="row"><button class="btn" type="submit">${first?'מתחילים':'שמירה'}</button>${first?'':'<button class="btn ghost" type="button" data-act="cancel">ביטול</button>'}</div>
+  </form>`;
+  document.getElementById('pf').addEventListener('submit',e=>{
+    e.preventDefault();
+    const name=document.getElementById('pn').value.trim();if(!name)return;
+    P=normalize(Object.assign({},P||{},{name,grade:document.getElementById('pg').value,level:+document.getElementById('pl').value}));
+    ui.lvl=P.level;ui.edit=false;persist();render();
+  });
+}
+
+/* ======================================================= בית ======================================================= */
+function homeHTML(){
+  const goal=50,got=(P.day&&P.day.d===today())?P.day.xp:0,p=Math.min(100,Math.round(100*got/goal));
+  const lv=lvlOf(P.xp),cur=40*(lv-1)*(lv-1),nxt=40*lv*lv,lp=Math.round(100*(P.xp-cur)/(nxt-cur));
+  const next=UNITS.find(u=>u.lvl===P.level&&u.kind!=='write'&&!(P.units[u.id]&&pct(P.units[u.id])>=80));
+  const setsLv=VSETS.filter(s=>s.band===Math.min(P.level,3));
+  const ds=setsLv[new Date().getDate()%setsLv.length];
+  const e=P.essays&&P.essays[0];
+  return `<div class="stack">
+  <div class="card hero">
+   <div class="ring" style="--p:${p}" role="img" aria-label="יעד יומי ${got} מתוך ${goal}"><span>${got}</span></div>
+   <div><h2>${got>=goal?'היעד היומי הושג. כל הכבוד!':'היעד היומי: '+goal+' XP'}</h2>
+    <p class="muted">${P.streak.n>1?'רצף של '+P.streak.n+' ימים. ממשיכים!':'כמה דקות תרגול ביום עדיפות על שעה אחת בשבוע.'}</p>
+    <div class="row small" style="margin-top:10px"><span>רמה ${lv}</span><div class="bar xp" style="flex:1;min-width:120px"><i style="width:${lp}%"></i></div><span class="muted">${P.xp-cur}/${nxt-cur}</span></div></div>
+  </div>
+  <div class="grid">
+   ${next?`<button class="card link" data-act="open" data-v="${next.id}"><span class="tag">ממשיכים מהמקום שעצרתם בו</span><h3>${esc(next.title)}</h3><span class="muted small">${next.skill} · ${next.qs.length} שאלות</span></button>`:''}
+   <button class="card link" data-act="gostart" data-v="blitz|v:${ds.id}"><span class="tag">אתגר היום · ${BANDS[ds.band].name}</span><h3>${esc(ds.title)}</h3><span class="muted small">דקה של שאלות מהירות על מילים מהקבוצה</span></button>
+   <button class="card link" data-act="tab" data-v="topics"><span class="tag">משהו לא ברור?</span><h3>חיפוש חופשי של נושא</h3><span class="muted small">למשל past perfect או prepositions. נכין שיעור ותרגול</span></button>
+   <button class="card link" data-act="tab" data-v="bagrut"><span class="tag">בגרות</span><h3>תרגול כתיבה עם משוב</h3><span class="muted small">${e?'הציון האחרון שלך: '+e.total+'/'+e.pts:'נושא אקראי וציון לפי המחוון'}</span></button>
+  </div>
+  ${P.topics.length?`<div><h3>נושאים אחרונים</h3><div class="cats">${P.topics.slice(0,6).map(t=>`<button class="chip" data-act="topic" data-v="${esc(t.t)}">${esc(t.t)}</button>`).join('')}</div></div>`:''}
+  </div>`;
+}
+
+/* ======================================================= חיפוש נושא + שיעור ======================================================= */
+function topicsHTML(){
+  return `<div class="stack"><div><h2>על מה לומדים היום?</h2><p class="muted">מקלידים באנגלית או בעברית ובוחרים מהרשימה שנפתחת. אפשר גם לכתוב כל נושא אחר.</p></div>
+  <form id="tf" autocomplete="off"><div class="combo">
+   <label class="f" for="tq">נושא</label>
+   <input id="tq" type="text" role="combobox" aria-expanded="false" aria-controls="tl" aria-autocomplete="list" placeholder="למשל: past perfect, prepositions, idioms" value="${esc(ui.topicQ)}" dir="auto">
+   <div id="tl" class="list" role="listbox" hidden></div>
+  </div>
+  <div class="cats" role="group" aria-label="קטגוריה">${Object.entries(CATS).map(([k,l])=>`<button type="button" class="chip" aria-pressed="${ui.topicCat===k}" data-act="tcat" data-v="${k}">${l}</button>`).join('')}</div>
+  <div class="row" style="margin-top:8px"><button class="btn" type="submit">להכין שיעור ותרגול</button><span class="muted small">מותאם לכיתה ${esc(P.grade)} ולרמה ${LEVELS[P.level].name}</span></div></form>
+  ${sample?'':'<div class="banner">שיעורים בנושא חופשי: '+NOAI+'</div>'}
+  <div id="tsug" class="grid">${suggestCards()}</div></div>`;
+}
+function suggestCards(){
+  const list=TOPICS.filter(t=>!ui.topicCat||t[2]===ui.topicCat).slice(0,ui.topicCat?60:9);
+  return list.map(t=>`<button class="card link" data-act="topic" data-v="${esc(t[0])}"><span class="tag">${CATS[t[2]]}</span><h3 class="en">${esc(t[0])}</h3><span class="muted small">${esc(t[1])}</span></button>`).join('');
+}
+function matches(q){
+  q=q.trim().toLowerCase();if(!q)return [];
+  return TOPICS.filter(t=>t[0].toLowerCase().includes(q)||t[1].includes(q)).slice(0,8);
+}
+function hl(s,q){const i=s.toLowerCase().indexOf(q.toLowerCase());if(i<0||!q)return esc(s);return esc(s.slice(0,i))+'<mark>'+esc(s.slice(i,i+q.length))+'</mark>'+esc(s.slice(i+q.length))}
+function bindCombo(){
+  const inp=document.getElementById('tq'),lst=document.getElementById('tl');if(!inp)return;
+  let sel=-1,cur=[];
+  const draw=()=>{
+    const q=inp.value.trim();ui.topicQ=inp.value;
+    cur=matches(q);sel=-1;
+    if(!q){lst.hidden=true;inp.setAttribute('aria-expanded','false');return}
+    lst.innerHTML=cur.map((t,i)=>`<div class="opt-i" role="option" id="o${i}" data-i="${i}" aria-selected="false"><b class="en">${hl(t[0],q)}</b><span class="muted small">${hl(t[1],q)}</span></div>`).join('')+
+      `<div class="opt-i" role="option" id="oc" data-i="free" aria-selected="false"><b>שיעור על: <span class="en">${esc(q)}</span></b></div>`;
+    lst.hidden=false;inp.setAttribute('aria-expanded','true');
+  };
+  const mark=()=>{[...lst.children].forEach((c,i)=>c.setAttribute('aria-selected',String(i===sel)));if(sel>=0)inp.setAttribute('aria-activedescendant',lst.children[sel].id)};
+  inp.addEventListener('input',draw);inp.addEventListener('focus',draw);
+  inp.addEventListener('keydown',e=>{
+    const n=lst.children.length;
+    if(e.key==='ArrowDown'){e.preventDefault();if(n){sel=(sel+1)%n;mark()}}
+    else if(e.key==='ArrowUp'){e.preventDefault();if(n){sel=(sel-1+n)%n;mark()}}
+    else if(e.key==='Escape'){lst.hidden=true}
+    else if(e.key==='Enter'&&sel>=0){e.preventDefault();const t=cur[sel];startLesson(t?t[0]:inp.value.trim())}
+  });
+  lst.addEventListener('mousedown',e=>{const o=e.target.closest('.opt-i');if(!o)return;e.preventDefault();const t=cur[+o.dataset.i];startLesson(t?t[0]:inp.value.trim())});
+  document.getElementById('tf').addEventListener('submit',e=>{e.preventDefault();const v=inp.value.trim();if(!v)return;startLesson(cur[0]&&cur[0][0].toLowerCase()===v.toLowerCase()?cur[0][0]:v)});
+}
+function lessonPrompt(topic){
+  const lv=LEVELS[P.level];
+  return `You are an experienced Israeli English teacher preparing a short lesson for ONE student.
+Student: grade ${P.grade} (Israeli school system), level "${lv.name}" (CEFR ${lv.cefr}). Native language: Hebrew.
+Topic requested by the student: """${topic}"""
+Rules:
+- If the topic is not about learning English (language, grammar, vocabulary, reading, writing, listening, pronunciation, exams), set "off_topic": true and leave the other fields empty.
+- Explanations are in simple Hebrew suited to the grade; all English examples are natural and use the student's world (school, friends, gaming, social media, sports, music, phones, Israeli daily life), never childish for grades 10-12.
+- Respect the Israeli Ministry of Education vocabulary and grammar bands for this level: do not use words well above ${lv.cefr}.
+- Mention typical mistakes of Hebrew speakers for this topic when relevant.
+- Quiz: exactly 6 multiple-choice questions, in the style of an Israeli English test, 4 options each, one correct answer, increasing difficulty.
+Return ONLY a JSON object with this shape:
+{"off_topic":false,"title":"English title","title_he":"כותרת בעברית","intro_he":"2-3 sentences","rules":[{"rule_he":"...","examples":[{"en":"...","he":"..."}]}],"mistakes":[{"wrong":"...","right":"...","why_he":"..."}],"tips_he":["..."],"quiz":[{"q":"...","options":["a","b","c","d"],"answer":0,"why_he":"..."}]}
+Give 2-4 rules with 2 examples each, 2-3 mistakes, 2-3 tips.
+LANGUAGE QUALITY RULES (very important):
+- All English must be natural, idiomatic, correct and proofread. Time expressions follow natural order and format: "Yesterday at 4 p.m." or "At 4 p.m. yesterday" (use p.m./a.m. or o'clock), never "At 4:00 yesterday". Never mix tenses inside an example. Check every example sentence against the rule it illustrates.
+- All Hebrew must be clear, correct, modern standard Hebrew in short sentences, not translated word-for-word from English. Address students in a gender-neutral way (plural, infinitive or impersonal), never with "אתה" or "את".
+- Before returning, re-read every sentence once and fix any error.
+`;
+}
+async function startLesson(topic){
+  topic=topic.replace(/\s+/g,' ').trim().slice(0,80);if(!topic)return;
+  ui.lesson={mode:'loading',topic};
+  app.innerHTML=`<div class="card" style="text-align:center;padding:40px 16px"><div class="spinner" aria-hidden="true"></div><h2 style="margin-top:14px" class="en">${esc(topic)}</h2><p class="muted">מכינים שיעור ותרגול. זה ייקח כמה שניות.</p></div>`;
+  if(!sample){ui.lesson=null;bannerMsg='';render();toast('שיעורים בנושא חופשי: '+NOAI);return}
+  try{
+    const r=await sample.json(lessonPrompt(topic),{modelTier:'default'});
+    if(!r||r.off_topic||!Array.isArray(r.quiz)||r.quiz.length<3)throw {code:'off'};
+    const quizRaw=r.quiz.filter(q=>q&&q.q&&Array.isArray(q.options)&&q.options.length>=2&&Number.isInteger(q.answer)&&q.options[q.answer]!=null).map(q=>({q:q.q,why:q.why_he||'',o:shuffle(q.options.map((t,i)=>({t:String(t),ok:i===q.answer})))}));
+    const quiz=quizRaw;
+    {const pa=ensurePath(slug(topic),r.title||topic,topic);addSeen(pa,quiz.map(q=>q.q))}
+    ui.lesson={mode:'view',topic,data:r,quiz,qi:0,picked:null,score:0,done:false};
+    P.topics=[{t:topic,ts:Date.now()}].concat((P.topics||[]).filter(x=>x.t.toLowerCase()!==topic.toLowerCase())).slice(0,12);persist();
+    addXP(5,'שיעור חדש');
+  }catch(e){
+    ui.lesson=null;ui.view='topics';render();
+    toast(e&&e.code==='off'?'הנושא אינו קשור ללימוד אנגלית. אפשר לנסות נושא אחר.':e&&e.code==='not_granted'?'כדי ליצור שיעור צריך לאשר את הגישה ל-Claude':'לא הצלחנו להכין את השיעור. אפשר לנסות שוב.');
+    return;
+  }
+  render();window.scrollTo(0,0);
+}
+function renderLesson(){
+  const L=ui.lesson,d=L.data;
+  const q=L.quiz[L.qi];
+  app.innerHTML=`<div class="row spread" style="margin-bottom:12px"><button class="btn ghost" data-act="leave">חזרה</button><span class="muted small">${esc(LEVELS[P.level].name)} · כיתה ${esc(P.grade)}</span></div>
+  <div class="stack">
+  <div><div class="tag">שיעור</div><h1 class="en">${esc(d.title||L.topic)}</h1><div class="muted">${esc(d.title_he||'')}</div></div>
+  <div class="card"><p>${esc(d.intro_he||'')}</p>
+   ${(d.rules||[]).map(r=>`<div class="rule"><div>${esc(r.rule_he)}</div>${(r.examples||[]).map(x=>`<div class="ex"><span class="en">${esc(x.en)}</span><span class="muted small">${esc(x.he)}</span></div>`).join('')}</div>`).join('')}
+  </div>
+  ${(d.mistakes||[]).length?`<div class="card"><h3>טעויות נפוצות</h3>${d.mistakes.map(m=>`<div class="fix"><div class="en bad">✗ ${esc(m.wrong)}</div><div class="en ok">✓ ${esc(m.right)}</div><div class="small muted">${esc(m.why_he)}</div></div>`).join('')}</div>`:''}
+  ${(d.tips_he||[]).length?`<div class="card"><h3>טיפים</h3><ul>${d.tips_he.map(t=>`<li>${esc(t)}</li>`).join('')}</ul></div>`:''}
+  <div class="card" id="lq"><h3>עכשיו מתרגלים</h3>${L.done?lessonDoneHTML(L):`
+   <div class="muted small">שאלה ${L.qi+1} מתוך ${L.quiz.length}</div>
+   <p class="en" style="font-weight:700;margin-top:6px">${esc(q.q)}</p>
+   <div class="opts">${q.o.map((o,k)=>`<button class="opt en ${L.picked!==null?(o.ok?'right':(k===L.picked?'wrong':'')):''}" data-act="lpick" data-v="${k}" ${L.picked!==null?'disabled':''}>${esc(o.t)}</button>`).join('')}</div>
+   ${L.picked!==null?`<div class="fb" role="status"><b>${q.o[L.picked].ok?'נכון. ':'לא מדויק. '}</b>${esc(q.why)}</div><button class="btn" data-act="lnext">${L.qi+1<L.quiz.length?'לשאלה הבאה':'לתוצאה'}</button>`:''}`}
+  </div></div>`;
+}
+
+/* ======================================================= מקורות לשאלות (אוצר מילים + יחידות) ======================================================= */
+function allSources(){
+  return VSETS.map(s=>({id:'v:'+s.id,label:BANDS[s.band].name+' · '+s.title,vocab:true,set:s})).concat(UNITS.filter(u=>u.kind==='quiz').map(u=>({id:'u:'+u.id,label:LEVELS[u.lvl].cefr+' · '+u.title,vocab:false,unit:u})));
+}
+function srcById(id){return allSources().find(s=>s.id===id)}
+function vocabItems(set,n,flip){
+  const pool=VSETS.filter(s=>s.band===set.band).flatMap(s=>s.w);
+  return shuffle(set.w).slice(0,n||set.w.length).map(([en,he],i)=>{
+    const toHe=(i%2===0)!==!!flip;
+    const dis=shuffle(pool.filter(w=>w[0]!==en)).slice(0,3);
+    return toHe?{q:en,qdir:'en',say:en,o:shuffle([{t:he,ok:true}].concat(dis.map(d=>({t:d[1],ok:false})))),odir:'he',why:`${en} = ${he}`,w:en}
+              :{q:he,qdir:'he',o:shuffle([{t:en,ok:true}].concat(dis.map(d=>({t:d[0],ok:false})))),odir:'en',why:`${he} = ${en}`,w:en};
+  });
+}
+function unitItems(u){return u.qs.map(q=>({q:q.q,qdir:'en',o:shuffle(q.o.map((t,k)=>({t,ok:k===0}))),odir:'en',why:q.why}))}
+function itemsFor(src,n){
+  if(src.vocab)return vocabItems(src.set,n);
+  return shuffle(unitItems(src.unit));
+}
+function srcSelect(id,sel){
+  const g=[1,2,3].map(b=>`<optgroup label="${BANDS[b].name}">${allSources().filter(s=>s.vocab&&s.set.band===b).map(s=>`<option value="${s.id}" ${s.id===sel?'selected':''}>${esc(s.label)}</option>`).join('')}</optgroup>`).join('');
+  const u=`<optgroup label="יחידות דקדוק והבנת הנקרא">${allSources().filter(s=>!s.vocab).map(s=>`<option value="${s.id}" ${s.id===sel?'selected':''}>${esc(s.label)}</option>`).join('')}</optgroup>`;
+  return `<select id="${id}">${g}${u}</select>`;
+}
+
+/* ======================================================= אוצר מילים ======================================================= */
+function known(w){return (P.vocab&&P.vocab[w])||0}
+function vocabHTML(){
+  const b=ui.vband||Math.min(P.level,3);
+  const sets=VSETS.filter(s=>s.band===b);
+  const totW=sets.reduce((a,s)=>a+s.w.length,0),kn=sets.reduce((a,s)=>a+s.w.filter(w=>known(w[0])>=2).length,0);
+  return `<div class="stack"><div><h2>אוצר מילים לפי Bands של משרד החינוך</h2>
+  <p class="muted">המילים נבחרו מתוך רשימות Lexical Band I–III הרשמיות. הרשימות המלאות זמינות בלשונית "חומרי משרד החינוך".</p></div>
+  <div class="cats" role="group" aria-label="בחירת Band">${[1,2,3].map(x=>`<button class="chip" aria-pressed="${b===x}" data-act="vband" data-v="${x}">${BANDS[x].name}</button>`).join('')}</div>
+  <div class="row spread"><span class="muted">${BANDS[b].sub}</span><span class="small">נלמדו ${kn} מתוך ${totW} מילים ב-${BANDS[b].name} הזה</span></div>
+  <div class="bar" aria-hidden="true"><i style="width:${Math.round(100*kn/totW)}%"></i></div>
+  <div class="grid">${sets.map(s=>{const k=s.w.filter(w=>known(w[0])>=2).length;return `<div class="card"><div class="tag">${k}/${s.w.length} נלמדו</div><h3>${esc(s.title)}</h3>
+   <div class="bar" style="margin:10px 0"><i style="width:${Math.round(100*k/s.w.length)}%"></i></div>
+   <div class="row"><button class="btn" data-act="gostart" data-v="cards|v:${s.id}">כרטיסיות</button><button class="btn ghost" data-act="gostart" data-v="match|v:${s.id}">התאמה</button><button class="btn ghost" data-act="gostart" data-v="blitz|v:${s.id}">בליץ</button><button class="btn ghost" data-act="gostart" data-v="spell|v:${s.id}">איות</button></div></div>`}).join('')}</div>
+  </div>`;
+}
+
+/* ======================================================= משחקים ======================================================= */
+const GAMES=[
+ {k:'blitz',n:'בליץ',d:'60 שניות כדי לענות נכון על כמה שיותר שאלות. רצף של תשובות נכונות מעלה את הניקוד.',any:true},
+ {k:'gold',n:'מסע הזהב',d:'כל תשובה נכונה פותחת תיבת אוצר. אוספים זהב ומנסים לנצח את רובו, הרובוט.',any:true},
+ {k:'cards',n:'כרטיסיות',d:'מפעילים כרטיס ובודקים אם ידעתם את התרגום. מילים שלא ידעתם חוזרות.',any:false},
+ {k:'match',n:'התאמה',d:'מחברים כל מילה לתרגום שלה, הכי מהר שאפשר.',any:false},
+ {k:'spell',n:'איות',d:'קוראים את המשמעות בעברית וכותבים את המילה באנגלית. אפשר גם להקשיב לה.',any:false}
+];
+function gamesHTML(){
+  const sel=ui.gsrc||'v:'+VSETS.find(s=>s.band===Math.min(P.level,3)).id;
+  const src=srcById(sel);
+  return `<div class="stack"><div><h2>משחקים</h2><p class="muted">בוחרים חומר ומשחק. כל משחק מזכה ב-XP.</p></div>
+  <label class="f" for="gs">החומר לתרגול</label>${srcSelect('gs',sel)}
+  <div class="grid">${GAMES.map(g=>{const dis=!src.vocab&&!g.any;const b=P.best&&P.best[g.k+':'+sel];return `<button class="card link" ${dis?'disabled style="opacity:.5;cursor:default"':''} data-act="gostart" data-v="${g.k}|${sel}"><h3>${g.n}</h3><span class="muted small">${g.d}</span>${dis?'<span class="tag">זמין רק לאוצר מילים</span>':b?`<span class="tag">שיא אישי: ${b}</span>`:''}</button>`}).join('')}</div></div>`;
+}
+function startGame(kind,srcId){
+  const src=srcById(srcId);if(!src)return;
+  stopTimer();
+  const base={kind,src:srcId,xp:0};
+  if(kind==='blitz'){ui.game=Object.assign(base,{pool:[],i:0,score:0,streak:0,right:0,left:60,picked:null,over:false});refill();ui.game.t0=Date.now();ui.timer=setInterval(tick,250)}
+  else if(kind==='gold'){const items=itemsFor(src,12);ui.game=Object.assign(base,{items,i:0,gold:0,bot:0,mult:1,picked:null,chests:null,over:false,right:0})}
+  else if(kind==='cards'){const w=shuffle(src.set.w);ui.game=Object.assign(base,{deck:w.map(x=>x.slice()),flip:false,total:w.length,knownN:0,again:0})}
+  else if(kind==='match'){const w=shuffle(src.set.w).slice(0,6);const tiles=shuffle(w.flatMap(x=>[{k:x[0],t:x[0],l:'en'},{k:x[0],t:x[1],l:'he'}]));ui.game=Object.assign(base,{tiles,sel:null,done:0,moves:0,t0:null,sec:0,over:false,bad:null,lock:false});ui.timer=setInterval(()=>{if(ui.game&&ui.game.t0&&!ui.game.over){ui.game.sec=Math.floor((Date.now()-ui.game.t0)/1000);const e=document.getElementById('mt');if(e)e.textContent=ui.game.sec}},500)}
+  else if(kind==='spell'){const w=shuffle(src.set.w).slice(0,10);ui.game=Object.assign(base,{w,i:0,right:0,tries:0,hint:false,fb:null,over:false})}
+  render();window.scrollTo(0,0);
+}
+function refill(){const g=ui.game,src=srcById(g.src);g.pool=itemsFor(src,src.vocab?src.set.w.length:undefined)}
+/* מילה או שאלה שנענתה לא נכון חוזרת פעם אחת בסוף הסבב, עם תשובות מעורבבות מחדש. מה שנענה נכון לא חוזר. */
+function redo(srcId,it){
+  const src=srcById(srcId);
+  if(src.vocab&&it.w){const pair=src.set.w.find(x=>x[0]===it.w);if(pair){const n=vocabItems({band:src.set.band,w:[pair]},1,it.qdir==='en')[0];n.again=true;return n}}
+  return Object.assign({},it,{o:shuffle(it.o),again:true});
+}
+function tick(){
+  const g=ui.game;if(!g||g.kind!=='blitz'||g.over)return;
+  g.left=Math.max(0,60-Math.floor((Date.now()-g.t0)/1000));
+  const e=document.getElementById('bt');if(e)e.textContent=g.left;
+  const b=document.getElementById('bb');if(b)b.style.width=(g.left/60*100)+'%';
+  if(g.left<=0)endGame();
+}
+function endGame(){
+  const g=ui.game;if(!g||g.over)return;g.over=true;stopTimer();
+  let xp=0,key=g.kind+':'+g.src,score=0;
+  if(g.kind==='blitz'){if(g.cleared)g.score+=g.left*10;score=g.score;xp=Math.min(60,Math.round(g.score/40))}
+  else if(g.kind==='gold'){score=g.gold;xp=8+Math.min(30,Math.round(g.gold/30))+(g.gold>g.bot?8:0)}
+  else if(g.kind==='match'){score=Math.max(0,300-g.sec*4-g.moves*3);xp=10+Math.min(15,Math.round(score/20));srcById(g.src).set.w.forEach(w=>{if(g.tiles.some(t=>t.k===w[0]))P.vocab[w[0]]=Math.min(3,known(w[0])+1)})}
+  else if(g.kind==='spell'){score=g.right;xp=g.right*3}
+  g.gainXP=xp;
+  if(!P.best)P.best={};
+  if(score>(P.best[key]||0)){P.best[key]=score;g.record=true}
+  g.score2=score;
+  if(!P.stats)P.stats={};
+  if(g.kind==='gold'&&g.gold>g.bot)P.stats.goldWins=(P.stats.goldWins||0)+1;
+  if(g.kind==='blitz'&&g.cleared)P.stats.blitzCleared=(P.stats.blitzCleared||0)+1;
+  addXP(xp);persist();
+  if(ui.game===g)render();
+}
+function gameHead(title){return `<div class="row spread" style="margin-bottom:12px"><button class="btn ghost" data-act="gexit">יציאה</button><strong>${title}</strong><span></span></div>`}
+function resultCard(title,main,sub){
+  const g=ui.game;
+  return `${gameHead(title)}<div class="card pop" style="text-align:center"><div class="stat"><b>${main}</b><span class="muted">${sub}</span></div>
+  <p style="margin:12px 0"><span class="pill xp">${IC.bolt}+${g.gainXP||0} XP</span> ${g.record?'<span class="pill">שיא אישי חדש</span>':''}</p>
+  <div class="row" style="justify-content:center"><button class="btn" data-act="gostart" data-v="${g.kind}|${g.src}">שוב</button><button class="btn ghost" data-act="gexit">לרשימה</button></div></div>`;
+}
+function qBlock(it){
+  return `<div class="bigq ${it.qdir==='he'?'he':'en'}" style="${it.qdir==='he'?'direction:rtl;text-align:center':'text-align:center'}">${esc(it.q)}${it.say?` <button class="btn ghost" data-act="say" data-v="${esc(it.say)}" aria-label="השמע" style="min-height:36px;padding:2px 10px">▶</button>`:''}</div>`;
+}
+function renderGame(){
+  const g=ui.game;
+  if(g.kind==='blitz')return renderBlitz();
+  if(g.kind==='gold')return renderGold();
+  if(g.kind==='cards')return renderCards();
+  if(g.kind==='match')return renderMatch();
+  if(g.kind==='spell')return renderSpell();
+}
+/* בליץ */
+function renderBlitz(){
+  const g=ui.game;
+  if(g.over){app.innerHTML=resultCard('בליץ',g.score,g.cleared?`סיימתם את כל החומר, ${g.right} תשובות נכונות`:`${g.right} תשובות נכונות`);return}
+  const it=g.pool[g.i];
+  app.innerHTML=`${gameHead('בליץ')}<div class="hud"><span class="pill xp">${IC.bolt}${g.score}</span><span class="pill">${IC.fire}x${Math.min(5,1+Math.floor(g.streak/3))}</span><span class="pill" id="bt">${g.left}</span></div>
+  <div class="bar" style="margin-top:10px"><i id="bb" style="width:${g.left/60*100}%"></i></div>
+  ${qBlock(it)}
+  <div class="tiles">${it.o.map((o,k)=>`<button class="tile ${it.odir==='he'?'he':'en'} ${g.picked!==null?(o.ok?'right':(k===g.picked?'wrong':'')):''}" data-act="bpick" data-v="${k}" ${g.picked!==null?'disabled':''} style="${it.odir==='he'?'direction:rtl':'direction:ltr'}">${esc(o.t)}</button>`).join('')}</div>
+  ${g.picked!==null&&!it.o[g.picked].ok?`<div class="fb" role="status">${esc(it.why)}</div>`:''}`;
+}
+function bpick(k){
+  const g=ui.game;if(g.picked!==null||g.over)return;
+  const it=g.pool[g.i];g.picked=k;
+  if(it.o[k].ok){g.streak++;g.right++;g.score+=100*Math.min(5,1+Math.floor((g.streak-1)/3));if(it.w)P.vocab[it.w]=Math.min(3,known(it.w)+(g.right%3===0?1:0))}
+  else{g.streak=0;if(!it.again)g.pool.push(redo(g.src,it))}
+  render();
+  setTimeout(()=>{if(ui.game!==g||g.over)return;g.picked=null;g.i++;if(g.i>=g.pool.length){g.cleared=true;endGame();return}render()},it.o[k].ok?450:1400);
+}
+/* מסע הזהב */
+const CHESTS=[{t:'+30 זהב',f:g=>g.gold+=30*g.mult},{t:'+60 זהב',f:g=>g.gold+=60*g.mult},{t:'+100 זהב',f:g=>g.gold+=100*g.mult},{t:'+150 זהב',f:g=>g.gold+=150*g.mult},{t:'כפל x2 לתיבה הבאה',f:g=>{g.mult=2;return 'x2'}},{t:'רובו גונב 40',f:g=>{g.gold=Math.max(0,g.gold-40)}}];
+function renderGold(){
+  const g=ui.game;
+  if(g.over){const win=g.gold>g.bot;app.innerHTML=resultCard('מסע הזהב',win?'ניצחון!':'רובו ניצח',`התוצאה שלך: ${g.gold} · רובו: ${g.bot}`);return}
+  const it=g.items[g.i];
+  const head=`${gameHead('מסע הזהב')}<div class="hud"><span class="pill xp">${IC.bolt}${g.gold}</span><span class="small muted">שאלה ${g.i+1}/${g.items.length}</span><span class="pill">רובו ${g.bot}</span></div>`;
+  if(g.chests){
+    app.innerHTML=`${head}<h3 style="text-align:center;margin:20px 0">נכון! בוחרים תיבה</h3><div class="grid" style="grid-template-columns:repeat(3,1fr)">${g.chests.map((c,k)=>`<button class="chest ${c.open?'open pop':''}" data-act="chest" data-v="${k}" ${g.opened?'disabled':''}>${c.open?esc(c.t):'?'}</button>`).join('')}</div>${g.opened?`<div class="row" style="justify-content:center;margin-top:16px"><button class="btn" data-act="gnext">${g.i+1<g.items.length?'לשאלה הבאה':'לתוצאה'}</button></div>`:''}`;
+    return;
+  }
+  app.innerHTML=`${head}${g.mult>1?'<div class="pill xp" style="margin-top:8px">כפל x2 פעיל</div>':''}${qBlock(it)}
+  <div class="tiles">${it.o.map((o,k)=>`<button class="tile" data-act="gpick" data-v="${k}" ${g.picked!==null?'disabled':''} style="${it.odir==='he'?'direction:rtl':'direction:ltr'}">${esc(o.t)}</button>`).join('')}</div>
+  ${g.picked!==null?`<div class="fb" role="status">${it.o[g.picked].ok?'נכון.':'לא נכון. '+esc(it.why)}</div><button class="btn" data-act="gnext">${g.i+1<g.items.length?'הלאה':'לתוצאה'}</button>`:''}`;
+  if(g.picked!==null)app.querySelectorAll('.tile').forEach((b,k)=>{if(it.o[k].ok)b.classList.add('right');else b.classList.add('wrong')});
+}
+/* כרטיסיות */
+function renderCards(){
+  const g=ui.game;
+  if(!g.deck.length){g.gainXP=g.gainXP??0;if(!g.over){g.over=true;g.gainXP=g.total*2;addXP(g.gainXP);persist()}app.innerHTML=resultCard('כרטיסיות',g.total+' מילים',`חזרות נוספות: ${g.again}`);return}
+  const c=g.deck[0];
+  app.innerHTML=`${gameHead('כרטיסיות')}<div class="hud"><span class="muted small">נשארו ${g.deck.length} · נלמדו ${g.knownN}</span></div><div class="bar" style="margin:8px 0 16px"><i style="width:${Math.round(100*g.knownN/g.total)}%"></i></div>
+  <div class="flash"><button data-act="flip" aria-label="הפוך כרטיס">${g.flip?`<span class="he">${esc(c[1])}</span>`:`<span class="en">${esc(c[0])}</span><span class="muted small">לחצו כדי לראות את התרגום</span>`}</button></div>
+  <div class="row" style="justify-content:center;margin-top:14px"><button class="btn ghost" data-act="say" data-v="${esc(c[0])}">השמעה</button>${g.flip?'<button class="btn ghost" data-act="again">עוד פעם</button><button class="btn" data-act="knew">ידעתי</button>':''}</div>`;
+}
+/* התאמה */
+function renderMatch(){
+  const g=ui.game;
+  if(g.over){app.innerHTML=resultCard('התאמה',g.sec+' שניות',`${g.moves} ניסיונות`);return}
+  app.innerHTML=`${gameHead('התאמה')}<div class="hud"><span class="pill" >זמן <span id="mt">${g.sec}</span></span><span class="pill">ניסיונות ${g.moves}</span></div>
+  <div class="mgrid" style="margin-top:14px">${g.tiles.map((t,i)=>`<button class="mt ${t.l==='he'?'he':'en'} ${t.done?'done':''} ${g.sel===i?'sel':''} ${g.bad&&g.bad.includes(i)?'no':''}" data-act="mpick" data-v="${i}" style="direction:${t.l==='he'?'rtl':'ltr'}">${esc(t.t)}</button>`).join('')}</div>`;
+}
+/* איות */
+function renderSpell(){
+  const g=ui.game;
+  if(g.over){app.innerHTML=resultCard('איות',g.right+'/'+g.w.length,'מילים שנכתבו נכון');return}
+  const w=g.w[g.i];
+  app.innerHTML=`${gameHead('איות')}<div class="hud"><span class="muted small">מילה ${g.i+1} מתוך ${g.w.length}</span></div>
+  <div class="bigq">${esc(w[1])}</div>
+  <div class="row" style="justify-content:center"><button class="btn ghost" data-act="say" data-v="${esc(w[0])}">השמעת המילה</button></div>
+  <form id="sf" class="form" style="margin:16px auto" autocomplete="off"><label class="f" for="si">כותבים באנגלית${g.hint?` · מתחילה ב-${esc(w[0][0])}, ${w[0].length} אותיות`:''}</label>
+   <input id="si" type="text" class="en" autocapitalize="none" autocorrect="off" spellcheck="false" ${g.fb?'disabled':''}>
+   <div class="row"><button class="btn" type="submit" ${g.fb?'disabled':''}>בדיקה</button>${g.hint?'':'<button class="btn ghost" type="button" data-act="hint">רמז</button>'}</div></form>
+  ${g.fb?`<div class="fb" role="status">${g.fb}</div><div class="row" style="justify-content:center"><button class="btn" data-act="snext">${g.i+1<g.w.length?'הבאה':'לתוצאה'}</button></div>`:''}`;
+  const f=document.getElementById('sf');
+  if(!g.fb){document.getElementById('si').focus();f.addEventListener('submit',e=>{
+    e.preventDefault();const v=document.getElementById('si').value.trim().toLowerCase();if(!v)return;
+    if(v===w[0].toLowerCase()){g.right++;P.vocab[w[0]]=Math.min(3,known(w[0])+1);g.fb=`נכון: <b class="en">${esc(w[0])}</b>`}
+    else{g.tries++;if(g.tries<2){toast('כמעט! אפשר לנסות שוב');return}if(!g.redone)g.redone=new Set();if(!g.redone.has(w[0])){g.redone.add(w[0]);g.w.push(w.slice())}g.fb=`התשובה הנכונה: <b class="en">${esc(w[0])}</b>`}
+    render();
+  })}
+}
+
+/* ======================================================= ליגה שבועית ======================================================= */
+function leagueHTML(){
+  if(mode!=='cloud')return `<div class="stack"><h2>הליגה השבועית</h2><div class="banner">${STANDALONE?'הליגה לא זמינה בגרסה העצמאית של האתר.':'הליגה זמינה כשנכנסים דרך הקישור שקיבלתם מהמורה, וכך אפשר להתחרות בחברים לקבוצה.'}</div></div>`;
+  const mine=(P.wk&&P.wk.w===weekId())?P.wk.xp:0;
+  const rows=league.filter(r=>r.id!==uid).concat([{id:uid,name:String(P.name).split(' ')[0],weekXp:mine,lv:lvlOf(P.xp)}]).sort((a,b)=>b.weekXp-a.weekXp);
+  const rank=rows.findIndex(r=>r.id===uid)+1;
+  return `<div class="stack"><div><h2>הליגה השבועית</h2><p class="muted">הדירוג לפי XP שנצבר מיום ראשון. מתאפס בכל שבוע. נשארו ${daysLeft()} ימים.</p></div>
+  <div class="card hero"><div class="ring" style="--p:${Math.min(100,Math.round(100*mine/300))}" role="img" aria-label="${mine} XP השבוע"><span>${rank}</span></div>
+   <div><h3>${rows.length>1?`מקום ${rank} מתוך ${rows.length}`:'המקום הראשון בליגה השבוע'}</h3><p class="muted">${mine} XP השבוע. ${rank>1?`עוד ${rows[rank-2].weekXp-mine+1} XP כדי לעקוף את ${esc(rows[rank-2].name)}.`:'ממשיכים להוביל.'}</p></div></div>
+  <div class="tblwrap"><table style="min-width:360px"><thead><tr><th>#</th><th>שם</th><th>רמה</th><th>XP השבוע</th></tr></thead><tbody>
+  ${rows.slice(0,15).map((r,i)=>`<tr ${r.id===uid?'style="background:var(--soft);font-weight:700"':''}><td>${i+1}</td><td><span style="display:inline-block;vertical-align:middle;margin-inline-end:6px;line-height:0">${avatar(r.id===uid?P.skin:r.av,24)}</span>${esc(r.name||'—')}${r.id===uid?' (את/ה)':''}</td><td>${r.lv||1}</td><td>${r.weekXp}</td></tr>`).join('')}
+  </tbody></table></div>
+  <p class="muted small">מוצג רק השם הפרטי. כל תרגול, משחק ושיעור מוסיפים XP.</p></div>`;
+}
+
+/* ======================================================= יחידות ======================================================= */
+function openUnit(id){
+  const u=UNITS.find(x=>x.id===id);
+  if(u.kind==='write'){const w=(P.writing||{})[id];ui.write={u,text:w?w.text:'',checks:w&&w.checks?w.checks.slice():u.list.map(()=>false)}}
+  else ui.quiz={u,i:0,score:0,picked:null,items:unitItems(u)};
+  render();window.scrollTo(0,0);
+}
+function renderQuiz(){
+  const z=ui.quiz,u=z.u;
+  if(z.i>=z.items.length){
+    const p=Math.round(100*z.score/z.items.length);
+    app.innerHTML=`<div class="card pop"><div class="tag">${u.skill}</div><h2>${esc(u.title)}</h2>
+     <div class="stat" style="margin:16px 0"><b>${p}%</b><span class="muted">${z.score} מתוך ${z.items.length} תשובות נכונות</span></div>${z.res?starsHTML(z.res.stars):''}
+     <p>${p>=80?'כל הכבוד. היחידה הושלמה.':p>=50?'יפה מאוד. כדאי לחזור על היחידה כדי להגיע ל-80%.':'כדאי לחזור על החומר ולנסות שוב.'}</p>
+     <div class="row" style="margin-top:12px">${quizNextBtn(z)}<button class="btn ghost" data-act="home">חזרה לרשימה</button></div></div>`;
+    return;
+  }
+  const it=z.items[z.i],ans=z.picked!==null;
+  app.innerHTML=`<div class="row spread" style="margin-bottom:12px"><button class="btn ghost" data-act="home">יציאה</button><span class="muted small">שאלה ${z.i+1} מתוך ${z.items.length}</span></div>
+  <div class="bar" style="margin-bottom:16px"><i style="width:${Math.round(100*z.i/z.items.length)}%"></i></div>
+  <div class="card"><div class="tag">${u.skill} · ${esc(u.title)}</div>
+  ${u.kind==='read'?`<div class="passage en">${esc(u.qs&&u.text)}</div>`:''}
+  <h3 class="en" style="margin-top:8px">${esc(it.q)}</h3>
+  <div class="opts">${it.o.map((o,k)=>`<button class="opt en ${ans?(o.ok?'right':(k===z.picked?'wrong':'')):''}" data-act="pick" data-v="${k}" ${ans?'disabled':''}>${esc(o.t)}</button>`).join('')}</div>
+  ${ans?`<div class="fb" role="status"><b>${it.o[z.picked].ok?'נכון. ':'לא מדויק. '}</b>${esc(it.why)}</div><button class="btn" data-act="next">${z.i+1<z.items.length?'לשאלה הבאה':'לתוצאה'}</button>`:''}
+  </div>`;
+}
+function finishQuiz(){
+  const z=ui.quiz,u=z.u,r=(P.units=P.units||{})[u.id]||{best:0,total:z.items.length,attempts:0};
+  r.best=Math.max(r.best,z.score);r.total=z.items.length;r.attempts++;r.last=z.score;r.ts=Date.now();
+  P.units[u.id]=r;
+  if(!P.stats)P.stats={};
+  if(z.score===z.items.length)P.stats.perfectUnits=(P.stats.perfectUnits||0)+1;
+  if(u.kind==='quiz'){
+    const key='u:'+u.id,pa=ensurePath(key,u.title,unitTopic(u));
+    if(!pa.seen.length)addSeen(pa,u.qs.map(q=>q.q));
+    z.res=recordStage(key,1,z.score,z.items.length,u.title,unitTopic(u));
+    persist();addXP(z.res.xp,'יחידה');
+    if(z.res.pass)celebrate({k:'stage',t:'שלב 1 הושלם: '+STAGES[0][0],s:z.res.stars+' כוכבים מתוך 3'});
+    checkAch();
+  }else{persist();addXP(z.score*2+4,'יחידה');checkAch()}
+}
+function renderWriteUnit(){
+  const w=ui.write,u=w.u;
+  app.innerHTML=`<div class="row spread" style="margin-bottom:12px"><button class="btn ghost" data-act="home">יציאה</button></div>
+  <div class="card"><div class="tag">כתיבה</div><h2>${esc(u.title)}</h2>
+  <p class="en" style="font-weight:500;margin-top:8px">${esc(u.prompt)}</p>
+  <label class="f" for="wt" style="margin-top:12px">הטקסט</label><textarea id="wt" spellcheck="true" lang="en">${esc(w.text)}</textarea>
+  <div class="muted small" id="wc" style="margin:4px 0 14px"></div>
+  <h3>רשימת בדיקה עצמית</h3>
+  ${u.list.map((t,i)=>`<label class="check"><input type="checkbox" data-chk="${i}" ${w.checks[i]?'checked':''}><span>${esc(t)}</span></label>`).join('')}
+  <div class="row" style="margin-top:14px"><button class="btn" data-act="savew">שמירה ושליחה למורה</button><span class="muted small" id="wmsg"></span></div></div>`;
+  const ta=document.getElementById('wt'),wc=document.getElementById('wc');
+  const cnt=()=>{wc.textContent=wordCount(ta.value)+' מילים'};
+  ta.addEventListener('input',()=>{w.text=ta.value;cnt()});cnt();
+  app.querySelectorAll('[data-chk]').forEach(c=>c.addEventListener('change',()=>{w.checks[+c.dataset.chk]=c.checked}));
+}
+
+/* ======================================================= כתיבה לבגרות ======================================================= */
+function bagrutHTML(){
+  const tr=ui.essay?ui.essay.track:(P.level===3?'G':P.level===2?'D':'C');
+  const E=ui.essay||{track:tr};
+  const T=TRACKS[E.track];
+  const hist=(P.essays||[]).slice(0,5);
+  return `<div class="stack"><div><h2>הכנה לכתיבה בבגרות</h2>
+  <p class="muted">בוחרים מודול, מקבלים נושא אקראי וכותבים. המשוב ניתן לפי מחוון הכתיבה הרשמי של משרד החינוך, כולל ניכוי על אורך.</p></div>
+  <div class="cats" role="group" aria-label="מודול">${Object.entries(TRACKS).map(([k,t])=>`<button class="chip" aria-pressed="${E.track===k}" data-act="track" data-v="${k}">${t.name} · ${t.min}–${t.max} מילים</button>`).join('')}</div>
+  <p class="muted small">${T.hint}. הציון המקסימלי: ${T.pts} נקודות.</p>
+  ${E.topic?essayEditor(E,T):`<div class="card"><p>כדי להתחיל, מקבלים נושא כתיבה אקראי במבנה של הבגרות.</p><div class="row" style="margin-top:12px"><button class="btn" data-act="newtopic">נושא אקראי</button></div></div>`}
+  ${E.result?essayResult(E,T):''}
+  ${hist.length?`<div><h3>הכתיבות האחרונות שלי</h3><div class="grid" style="margin-top:8px">${hist.map(h=>`<div class="card"><div class="tag">${esc(h.track)} · ${when(h.ts)}</div><b style="font-family:var(--f-head);font-size:26px">${h.total}/${h.pts}</b><div class="muted small en" style="margin-top:4px">${esc(h.topic.slice(0,80))}...</div></div>`).join('')}</div></div>`:''}
+  </div>`;
+}
+function essayEditor(E,T){
+  const n=wordCount(E.text||'');
+  return `<div class="card"><div class="row spread"><span class="tag">${E.topic[0]==='opinion'?'מאמר דעה':E.topic[0]==='story'?'סיפור':E.topic[0]==='email'?'מייל':E.topic[0]==='article'?'מאמר':'תיאור'}</span><button class="btn ghost" data-act="newtopic">נושא אחר</button></div>
+  <p class="en" style="font-size:18px;margin:10px 0">${esc(E.topic[1])}</p>
+  <label class="f" for="et">הטקסט (${T.min}–${T.max} מילים)</label>
+  <textarea id="et" lang="en" spellcheck="true" ${E.busy?'disabled':''}>${esc(E.text||'')}</textarea>
+  <div class="row spread" style="margin:6px 0 14px"><span class="small">מילים: <span id="ewc" class="wc ${n>=T.min?'good':'low'}">${n}</span> / ${T.min}–${T.max}</span><span class="muted small">לא מעתיקים מהאינטרנט. בבגרות טקסט מועתק מקבל ציון אפס.</span></div>
+  <button class="btn" data-act="grade" ${E.busy?'disabled':''}>${E.busy?'בודקים…':'קבלת משוב לפי המחוון'}</button>
+  ${E.busy?'<span class="spinner" style="margin-inline-start:10px"></span>':''}
+  ${sample?'':'<p class="muted small" style="margin-top:8px">משוב מלא לפי המחוון: '+NOAI+' בלעדיו מתקבלת רק בדיקת אורך.</p>'}</div>`;
+}
+function bindBagrut(){
+  const t=document.getElementById('et');if(!t)return;
+  t.addEventListener('input',()=>{
+    ui.essay.text=t.value;const T=TRACKS[ui.essay.track],n=wordCount(t.value),e=document.getElementById('ewc');
+    e.textContent=n;e.className='wc '+(n>=T.min?'good':'low');
+  });
+}
+function deduction(T,n){for(const [from,pts] of T.ded){if(n>=from&&n<T.min)return pts}return 0}
+function levelHe(l){return ({correct:'מלא',partial:'חלקי',minimal:'מינימלי',incorrect:'לא תקין'})[l]||''}
+function essayPrompt(E,T,n,ded){
+  const crit=T.crit.map(([k,he,m])=>`- ${k} (${he}), max ${m}: levels correct=${m}, partially correct≈${k==='content'?Math.round(m*.7):k==='vocab'?Math.round(m*.6):Math.round(m*.62)}, minimally correct≈${Math.round(m*.3)}, incorrect=0. In-between marks are allowed.`).join('\n');
+  return `You are a trained Israeli Bagrut English writing marker. Mark the student's text for ${T.name} using the official Ministry of Education writing rubric (${T.pts} points). Student: grade ${P.grade}, ${LEVELS[P.level].cefr}. Write the feedback in Hebrew, quote English exactly from the student's text.
+TASK GIVEN TO THE STUDENT: ${E.topic[1]}
+REQUIRED LENGTH: ${T.min}-${T.max} words. WORD COUNT: ${n}. (Length deduction of ${ded} points is applied by the system AFTER your marking. Mark as if the length were right, as the rubric instructs. Do not deduct for length yourself.)
+RUBRIC CRITERIA:
+- content: "Content and organization": on topic; fully developed main idea and supporting details; all elements of the task addressed; relevant information; understood; well organized and coherent. Deduct for lists, letter format when not asked, irrelevant "Hi, my name is..." openings, wrong tense for the task, an opinion that is missing or contradicted.
+- vocab: "Vocabulary": correct use of varied and rich vocabulary; appropriate chunks, phrases, phrasal verbs, collocations; correct use of connecting words; appropriate register.
+- language: "Language use": basic tenses and structures; advanced structures where suitable; word order; parts of speech, pronouns and prepositions.
+- mech: "Mechanics": spelling, punctuation, capitalization, paragraphing, no run-on sentences.
+MAX MARKS AND LEVELS:
+${crit}
+If the text is under ${T.cap} words, unrelated, incomprehensible or copied, all scores are 0.
+Be honest but encouraging. Hebrew feedback must be clear, correct and gender-neutral (plural, infinitive or impersonal; never "אתה" or "את"), in short sentences. Any English you write must be natural and correct. Do not invent mistakes: every "fixes" item must quote a real fragment of the student's text. Give at most 8 fixes, choosing the most instructive and mixing grammar, vocabulary, spelling and organization.
+STUDENT TEXT:
+"""
+${E.text}
+"""
+Return ONLY JSON:
+{"scores":{"content":0,"vocab":0,"language":0,"mech":0},"levels":{"content":"correct|partial|minimal|incorrect","vocab":"...","language":"...","mech":"..."},"comments":{"content":"Hebrew, 2-3 sentences","vocab":"...","language":"...","mech":"..."},"strengths":["Hebrew"],"fixes":[{"original":"exact quote","corrected":"better version","why_he":"Hebrew explanation, name the rule"}],"focus":["3 concrete things to practise next, in Hebrew"],"improved_text":"the student's own text, corrected and polished while keeping their ideas and length","next_task_he":"one short follow-up exercise in Hebrew"}`;
+}
+async function gradeEssay(){
+  const E=ui.essay,T=TRACKS[E.track],n=wordCount(E.text||''),ded=deduction(T,n);
+  if(n<5){toast('צריך לכתוב טקסט קודם');return}
+  E.busy=true;render();
+  let R=null;
+  if(sample){
+    try{R=await sample.json(essayPrompt(E,T,n,ded),{modelTier:'complex',cache:false})}catch(e){R=null;toast(e&&e.code==='not_granted'?'כדי לקבל משוב צריך לאשר את הגישה ל-Claude':'לא הצלחנו להפיק משוב. אפשר לנסות שוב')}
+  }
+  E.busy=false;
+  const res={n,ded,ai:false,scores:{},levels:{},comments:{},strengths:[],fixes:[],focus:[],zero:n<T.cap};
+  if(R&&R.scores){
+    res.ai=true;
+    T.crit.forEach(([k,he,m])=>{const v=Number(R.scores[k]);res.scores[k]=Math.max(0,Math.min(m,isFinite(v)?Math.round(v*2)/2:0));res.levels[k]=R.levels&&R.levels[k];res.comments[k]=(R.comments&&R.comments[k])||''});
+    res.strengths=(R.strengths||[]).slice(0,4);res.fixes=(R.fixes||[]).filter(f=>f&&f.original&&E.text.includes(f.original.slice(0,Math.min(12,f.original.length)))).slice(0,8);
+    res.focus=(R.focus||[]).slice(0,3);res.improved=R.improved_text||'';res.next=R.next_task_he||'';
+  }
+  const raw=T.crit.reduce((s,[k])=>s+(res.scores[k]||0),0);
+  res.total=res.ai?(res.zero?0:Math.max(0,raw-ded)):null;
+  E.result=res;
+  if(res.ai){
+    P.essays=[{track:T.name,topic:E.topic[1],total:res.total,pts:T.pts,ts:Date.now(),text:E.text.slice(0,1800),scores:res.scores,ded,focus:res.focus}].concat(P.essays||[]).slice(0,5);
+    persist();addXP(25,'כתיבה');
+  }
+  render();
+  setTimeout(()=>{const r=document.getElementById('eres');if(r)r.scrollIntoView({behavior:'smooth',block:'start'})},50);
+}
+function essayResult(E,T){
+  const r=E.result;
+  const local=`<div class="card" id="eres"><h3>בדיקת אורך</h3><p>כתבת ${r.n} מילים. נדרש: ${T.min}–${T.max}.</p>${r.zero?`<p class="bad">פחות מ-${T.cap} מילים. לפי המחוון זה ציון אפס על המשימה.</p>`:r.ded?`<p class="bad">ניכוי על אורך לפי המחוון: ${r.ded} נקודות.</p>`:'<p class="ok">האורך תקין.</p>'}<p class="muted small">משוב מפורט לפי המחוון דורש חיבור ל-Claude.</p></div>`;
+  if(!r.ai)return local;
+  return `<div class="card pop" id="eres"><div class="row spread"><h2>הציון שלך</h2><div class="stat" style="text-align:left"><b>${r.total}/${T.pts}</b></div></div>
+  ${r.ded?`<p class="small bad">כולל ניכוי של ${r.ded} נקודות על אורך (${r.n} מילים, נדרש ${T.min}–${T.max}).</p>`:`<p class="small muted">${r.n} מילים. אין ניכוי על אורך.</p>`}
+  ${r.zero?'<p class="bad">פחות מ-'+T.cap+' מילים, ולכן ציון אפס לפי המחוון.</p>':''}
+  <div style="margin-top:8px">${T.crit.map(([k,he,m])=>`<div class="crit"><div class="row spread"><b>${he}</b><span style="font-variant-numeric:tabular-nums"><b>${r.scores[k]}</b>/${m}${r.levels[k]?' · '+levelHe(r.levels[k]):''}</span></div><div class="bar"><i style="width:${Math.round(100*r.scores[k]/m)}%"></i></div><div class="small muted">${esc(r.comments[k])}</div></div>`).join('')}</div></div>
+  ${r.strengths.length?`<div class="card"><h3>מה עובד טוב</h3><ul>${r.strengths.map(s=>`<li>${esc(s)}</li>`).join('')}</ul></div>`:''}
+  ${r.focus.length?`<div class="card"><h3>על מה להתמקד כדי להשתפר</h3><ol>${r.focus.map(s=>`<li>${esc(s)}</li>`).join('')}</ol>${r.next?`<p style="margin-top:8px"><b>תרגיל להמשך:</b> ${esc(r.next)}</p>`:''}</div>`:''}
+  ${r.fixes.length?`<div class="card"><h3>תיקונים</h3>${r.fixes.map(f=>`<div class="fix"><div class="en bad">✗ ${esc(f.original)}</div><div class="en ok">✓ ${esc(f.corrected)}</div><div class="small muted">${esc(f.why_he)}</div></div>`).join('')}</div>`:''}
+  ${r.improved?`<details class="card"><summary><b>גרסה משופרת של הטקסט שלך</b></summary><p class="en" style="white-space:pre-wrap;margin-top:10px">${esc(r.improved)}</p><p class="muted small" style="margin-top:8px">כדאי לקרוא את הגרסה ולהשוות. לא מעתיקים אותה לבגרות: כותבים מחדש במילים שלכם.</p></details>`:''}
+  <div class="row"><button class="btn" data-act="rewrite">כתיבה מחדש</button><button class="btn ghost" data-act="newtopic">נושא חדש</button></div>`;
+}
+
+/* ======================================================= חומרים רשמיים ======================================================= */
+function resHTML(){
+  const yrs=[2026,2025,2024,2023,2022];
+  return `<h2>חומרי משרד החינוך</h2><p class="muted">הקישורים מובילים לאתרי משרד החינוך. הקבצים לא מועתקים לאתר הזה.</p>
+  <ul class="links">${RES.map(([t,h])=>`<li><a href="${h}" target="_blank" rel="noopener">${esc(t)}</a></li>`).join('')}</ul>
+  <h3>מפתחות תשובות לבגרות (2022–2026)</h3>
+  <div class="picker" style="margin:12px 0">
+   <label class="f" for="ry">שנה<select id="ry">${yrs.map(y=>`<option>${y}</option>`).join('')}</select></label>
+   <label class="f" for="rs">מועד<select id="rs"><option value="1">חורף</option><option value="6">קיץ</option><option value="8">קיץ מועד ב'</option></select></label>
+   <label class="f" for="rm">מודול<select id="rm">${MODS.map(([m,c])=>`<option value="${c}">Module ${m} (${c.slice(1)})</option>`).join('')}</select></label>
+   <a class="btn" id="rgo" href="#" target="_blank" rel="noopener" style="text-decoration:none;display:inline-flex;align-items:center">פתיחה</a>
+  </div>`;
+}
+function bindRes(){
+  const y=document.getElementById('ry');if(!y)return;
+  const go=document.getElementById('rgo');
+  const upd=()=>{go.href=`${BASE}sheeloney_bagrut/pitronot_bagrut/${y.value}/${document.getElementById('rs').value}/pitron-${document.getElementById('rm').value}-00-HEB.pdf`};
+  ['ry','rs','rm'].forEach(i=>document.getElementById(i).addEventListener('change',upd));upd();
+}
+
+/* ======================================================= מבט מורה ======================================================= */
+function teacherHTML(){
+  if(mode!=='cloud')return `<div class="banner">מבט המורה זמין כשהאתר פועל עם שמירה בענן. כרגע הוא פועל במצב מקומי.</div>`;
+  if(!roster.length)return `<h2>התלמידים שלי</h2><p class="muted">עדיין אין תלמידים. אחרי שתלמיד יפתח את הקישור, ייכנס ויתחיל לתרגל, הוא יופיע כאן.</p>`;
+  const rows=roster.slice().sort((a,b)=>(b.updated||0)-(a.updated||0));
+  return `<h2>התלמידים שלי (${rows.length})</h2>
+  <div class="tblwrap" style="margin:12px 0 24px"><table><thead><tr><th>שם</th><th>כיתה</th><th>רמה</th><th>XP</th><th>רצף</th><th>יחידות</th><th>ממוצע</th><th>כתיבה אחרונה</th><th>פעילות אחרונה</th></tr></thead><tbody>
+  ${rows.map(p=>{const m=mastered(p),a=avg(p),e=(p.essays||[])[0];return `<tr><td>${esc(p.name||'ללא שם')}</td><td>${esc(p.grade||'')}</td><td>${LEVELS[p.level]?LEVELS[p.level].name:''}</td><td>${p.xp||0}</td><td>${p.streak?p.streak.n:0}</td><td>${m}/${UNITS.length}</td><td>${a===null?'—':a+'%'}</td><td>${e?e.total+'/'+e.pts:'—'}</td><td>${when(p.updated)}</td></tr>`}).join('')}
+  </tbody></table></div>
+  <h3>פירוט לפי תלמיד</h3>
+  ${rows.map(p=>`<details class="st"><summary><b>${esc(p.name||'ללא שם')}</b><span class="muted small">כיתה ${esc(p.grade||'')} · ${p.xp||0} XP · ${mastered(p)}/${UNITS.length} יחידות</span></summary>
+   <div style="padding:10px 0;display:grid;gap:6px">${UNITS.filter(u=>u.kind!=='write').map(u=>{const r=(p.units||{})[u.id];return `<div class="row spread small"><span>${esc(u.title)} <span class="muted">· ${LEVELS[u.lvl].cefr}</span></span><span>${r?pct(r)+'% (ניסיונות: '+r.attempts+')':'—'}</span></div>`}).join('')}
+   <div class="small muted">מילים שנלמדו: ${Object.values(p.vocab||{}).filter(v=>v>=2).length} · נושאים שחיפש: ${(p.topics||[]).slice(0,5).map(t=>esc(t.t)).join(', ')||'—'}<br>מסלולים: ${Object.values(p.paths||{}).map(x=>esc(x.title)+' (שלב '+x.stage+')').join(', ')||'—'}</div></div>
+   ${(p.essays||[]).map(e=>`<div class="card" style="margin-top:10px"><div class="small muted">${esc(e.track)} · ${when(e.ts)} · ציון ${e.total}/${e.pts}${e.ded?' (ניכוי אורך '+e.ded+')':''}</div><div class="small en" style="margin-top:4px"><b>${esc(e.topic)}</b></div><div class="en" style="white-space:pre-wrap;margin-top:6px">${esc(e.text)}</div>${(e.focus||[]).length?`<div class="small" style="margin-top:6px">להתמקד: ${e.focus.map(esc).join(' · ')}</div>`:''}</div>`).join('')}
+   ${UNITS.filter(u=>u.kind==='write'&&p.writing&&p.writing[u.id]&&p.writing[u.id].text).map(u=>`<div class="card" style="margin-top:10px"><div class="small muted">${esc(u.title)} · ${when(p.writing[u.id].ts)}</div><div class="en" style="white-space:pre-wrap;margin-top:6px">${esc(p.writing[u.id].text)}</div></div>`).join('')}
+  </details>`).join('')}`;
+}
+
+/* ======================================================= אירועים ======================================================= */
+function leave(){ui.stage=null;ui.lesson=null;ui.quiz=null;ui.write=null;ui.game=null;stopTimer();render();window.scrollTo(0,0)}
+app.addEventListener('change',e=>{if(e.target.id==='gs'){ui.gsrc=e.target.value;render()}});
+app.addEventListener('click',e=>{
+  const b=e.target.closest('[data-act]');if(!b||b.disabled)return;
+  const a=b.dataset.act,v=b.dataset.v,g=ui.game;
+  switch(a){
+   case 'copyexp':{const t=exportText();const m=document.getElementById('xmsg');const ok=()=>{if(m)m.textContent='הסיכום הועתק.'};const fb=()=>{const x=document.getElementById('xs');if(x){x.focus();x.select();if(m)m.textContent='סמנו והעתיקו ידנית.'}};try{navigator.clipboard.writeText(t).then(ok,fb)}catch(e){fb()}break}
+   case 'skin':P.skin=v;persist();render();break;
+   case 'theme':P.theme=v;persist();render();break;
+   case 'stexit':ui.stage=null;render();window.scrollTo(0,0);break;
+   case 'pathgo':{
+     if(v.startsWith('u:')){const u=UNITS.find(x=>x.id===v.slice(2));if(u){const pa=ensurePath(v,u.title,unitTopic(u));if(!pa.seen.length)addSeen(pa,u.qs.map(q=>q.q))}}
+     if(!P.paths[v]){toast('המסלול לא נמצא');break}
+     const st=pathStage(v);
+     if(st>=STAGE_MAX){toast('השלמתם את כל השלבים בנושא הזה');break}
+     startStage(v,st+1);break}
+   case 'sgpick':{const S=ui.stage;if(S.picked!==null)return;S.picked=+v;if(S.qs[S.qi].o[+v].ok)S.score++;render();break}
+   case 'sgnext':{const S=ui.stage;S.qi++;S.picked=null;if(S.qi>=S.qs.length)finishStage();render();window.scrollTo(0,0);break}
+   case 'tab':ui.view=v;render();window.scrollTo(0,0);break;
+   case 'lvl':ui.lvl=+v;render();break;
+   case 'vband':ui.vband=+v;render();break;
+   case 'tcat':ui.topicCat=ui.topicCat===v?'':v;render();break;
+   case 'topic':startLesson(v);break;
+   case 'open':openUnit(v);break;
+   case 'home':ui.quiz=null;ui.write=null;render();break;
+   case 'leave':leave();break;
+   case 'editprofile':ui.edit=true;render();break;
+   case 'cancel':ui.edit=false;render();break;
+   case 'retry':openUnit(v);break;
+   case 'pick':{const z=ui.quiz;if(z.picked!==null)return;z.picked=+v;if(z.items[z.i].o[+v].ok)z.score++;render();break}
+   case 'next':{const z=ui.quiz;z.i++;z.picked=null;if(z.i>=z.items.length)finishQuiz();render();window.scrollTo(0,0);break}
+   case 'savew':{
+     const w=ui.write;P.writing=P.writing||{};
+     if(!w.text.trim()){document.getElementById('wmsg').textContent='צריך לכתוב טקסט קודם.';return}
+     P.writing[w.u.id]={text:w.text,checks:w.checks,ts:Date.now()};persist();addXP(15,'כתיבה');
+     document.getElementById('wmsg').textContent=mode==='cloud'?'נשמר ונשלח למורה.':'נשמר במכשיר הזה.';break}
+   /* שיעור */
+   case 'lpick':{const L=ui.lesson;if(L.picked!==null)return;L.picked=+v;if(L.quiz[L.qi].o[+v].ok)L.score++;renderLesson();break}
+   case 'lnext':{const L=ui.lesson;L.qi++;L.picked=null;if(L.qi>=L.quiz.length){L.done=true;const pa=P.paths[slug(L.topic)];L.res=recordStage(slug(L.topic),1,L.score,L.quiz.length,pa.title,pa.topic);addXP(L.res.xp,'שלב 1');if(L.res.pass)celebrate({k:'stage',t:'שלב 1 הושלם: '+STAGES[0][0],s:L.res.stars+' כוכבים מתוך 3'});persist();checkAch()}renderLesson();break}
+   case 'lretry':{const L=ui.lesson;L.qi=0;L.picked=null;L.score=0;L.done=false;L.quiz=L.quiz.map(q=>Object.assign({},q,{o:shuffle(q.o)}));renderLesson();break}
+   /* משחקים */
+   case 'gostart':{const [k,s]=v.split('|');startGame(k,s);break}
+   case 'gexit':ui.game=null;stopTimer();render();break;
+   case 'say':say(v);break;
+   case 'bpick':bpick(+v);break;
+   case 'gpick':{if(g.picked!==null)return;g.picked=+v;const ok=g.items[g.i].o[+v].ok;if(ok){g.right++;const w=g.items[g.i].w;if(w)P.vocab[w]=Math.min(3,known(w)+1);g.chests=null}else{g.mult=1;if(!g.items[g.i].again)g.items.push(redo(g.src,g.items[g.i]))}render();
+     if(ok){setTimeout(()=>{if(ui.game!==g)return;const ch=shuffle(CHESTS).slice(0,3).map(c=>Object.assign({},c,{open:false}));g.chests=ch;g.opened=false;g.picked=null;render()},700)}break}
+   case 'chest':{const c=g.chests[+v];if(g.opened)return;const was=g.mult;c.f(g);if(was>1&&c.t.includes('זהב'))g.mult=1;g.opened=true;g.chests.forEach((x,k)=>{x.open=true});render();break}
+   case 'gnext':{g.bot+=Math.floor(25+Math.random()*55);g.i++;g.picked=null;g.chests=null;g.opened=false;if(g.i>=g.items.length)endGame();else render();break}
+   case 'flip':g.flip=!g.flip;render();break;
+   case 'knew':{const c=g.deck.shift();g.knownN++;P.vocab[c[0]]=Math.min(3,known(c[0])+1);g.flip=false;persist();render();break}
+   case 'again':{const c=g.deck.shift();g.deck.push(c);g.again++;g.flip=false;render();break}
+   case 'mpick':{
+     if(g.lock||g.over)return;const i=+v,t=g.tiles[i];if(t.done||g.sel===i)return;
+     if(!g.t0)g.t0=Date.now();
+     if(g.sel===null){g.sel=i;render();break}
+     const o=g.tiles[g.sel];g.moves++;
+     if(o.k===t.k&&o.l!==t.l){o.done=t.done=true;g.done++;g.sel=null;if(g.done===g.tiles.length/2){g.sec=Math.floor((Date.now()-g.t0)/1000);endGame()}else render()}
+     else{g.bad=[g.sel,i];g.lock=true;g.sel=null;render();setTimeout(()=>{g.bad=null;g.lock=false;if(ui.game===g)render()},600)}
+     break}
+   case 'hint':g.hint=true;render();break;
+   case 'snext':{g.i++;g.tries=0;g.hint=false;g.fb=null;if(g.i>=g.w.length)endGame();else render();break}
+   /* כתיבה לבגרות */
+   case 'track':ui.essay=Object.assign({},ui.essay||{},{track:v,topic:null,text:'',result:null});render();break;
+   case 'newtopic':{const tr=(ui.essay&&ui.essay.track)||(P.level===3?'G':P.level===2?'D':'C');const bank=WTOPICS[(tr==='C'||tr==='D')?'CD':'FG'];ui.essay={track:tr,topic:pick(bank),text:'',result:null};render();break}
+   case 'grade':gradeEssay();break;
+   case 'rewrite':ui.essay.result=null;render();window.scrollTo(0,0);break;
+  }
+});
+init();
+</script>
